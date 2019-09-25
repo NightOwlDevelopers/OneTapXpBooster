@@ -1,0 +1,81 @@
+{
+  "project_info": {
+    "project_number": "53286765302",
+    "firebase_url": "https://one-tap-xp-boost-66405108.firebaseio.com",
+    "project_id": "one-tap-xp-boost-66405108",
+    "storage_bucket": "one-tap-xp-boost-66405108.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:53286765302:android:408758893fe2b39e",
+        "android_client_info": {
+          "package_name": "com.nightowldevelopers.onetapxpboost"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "53286765302-habgrdachocq84eoiscn78l6snstd399.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nightowldevelopers.onetapxpboost",
+            "certificate_hash": "75b4fd31c3293ed2e33964f9470b137090ea4072"
+          }
+        },
+        {
+          "client_id": "53286765302-3u5qdir1k9c7plr7kf1qupapms3pmoir.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nightowldevelopers.onetapxpboost",
+            "certificate_hash": "58424372806834dae8228e459fd4dd1269a2fee2"
+          }
+        },
+        {
+          "client_id": "53286765302-sho24pjgptdd7js7s8iesp6ku68uu2uk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nightowldevelopers.onetapxpboost",
+            "certificate_hash": "4626e15cdf4f5a242513658ec2fb905b03c8aeaa"
+          }
+        },
+        {
+          "client_id": "53286765302-40teqkfb6dhb9npdq1v4pmvjl24edtlg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nightowldevelopers.onetapxpboost",
+            "certificate_hash": "bc33aa2ded7c9da604de004707b2fb447c83f5a8"
+          }
+        },
+        {
+          "client_id": "53286765302-3t73cprc3bb98afuokfdjlc4crsja8o6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nightowldevelopers.onetapxpboost",
+            "certificate_hash": "6839980a69d2669314f895a76c73cc7389c586ee"
+          }
+        },
+        {
+          "client_id": "53286765302-55cf2p57vrsafncbsef9gll9csr8v3mk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU6GZBHFnSTEcJ0yhMLx1E07qQ2cOrvAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "53286765302-55cf2p57vrsafncbsef9gll9csr8v3mk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-9659269658536774~2740030670"
+    }
+  ],
+  "configuration_version": "1"
+}
