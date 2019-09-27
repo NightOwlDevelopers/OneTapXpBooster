@@ -26,7 +26,7 @@ class ProductsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //holder.textView.text = list[position].price
 
-        holder.textView.text = "Purchase " + list[position].price
+        holder.textView.text = "Buy 1000000XP at just " + list[position].price
 
     }
 

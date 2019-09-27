@@ -62,7 +62,11 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-
+<androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/achievementlogo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/achieve"/>
         <Button
                 android:id="@+id/achievement"
                 android:layout_width="wrap_content"
