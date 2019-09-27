@@ -3,26 +3,21 @@ package com.nightowldevelopers.onetapxpboost
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
+import com.android.billingclient.api.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.games.Games
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.android.gms.games.Games
-import com.android.billingclient.api.*
-import kotlinx.android.synthetic.main.activity_main.*
-import android.view.Gravity
-import com.google.android.gms.games.Games.setGravityForPopups
-import com.google.android.gms.games.Games.setViewForPopups
-import com.google.android.gms.games.GamesClient
-import com.google.android.gms.tasks.OnSuccessListener
 import kotlinx.android.synthetic.main.activity_google.*
 import kotlinx.android.synthetic.main.activity_main.products
 
@@ -30,7 +25,7 @@ import kotlinx.android.synthetic.main.activity_main.products
 /**
  * Demonstrate Firebase Authentication using a Google ID Token.
  */
-class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnClickListener {
+class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnClickListener {
 
     private lateinit var billingClient: BillingClient
     private lateinit var productsAdapter: ProductsAdapter
@@ -49,17 +44,17 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
         setContentView(R.layout.activity_google)
         setupBillingClient()
 
-        products.visibility=View.GONE
-        leaderboard.visibility=View.GONE
-        achievement.visibility=View.GONE
+        products.visibility = View.GONE
+        leaderboard.visibility = View.GONE
+        achievement.visibility = View.GONE
 
         // Button listeners
         signInButton.setOnClickListener(this)
         signOutButton.setOnClickListener(this)
         disconnectButton.setOnClickListener(this)
 
-        achievement.setOnClickListener({showAchievements()})
-        leaderboard.setOnClickListener({showLeaderboard()})
+        achievement.setOnClickListener({ showAchievements() })
+        leaderboard.setOnClickListener({ showLeaderboard() })
 
         // [START config_signin]
         // Configure Google Sign In
@@ -76,6 +71,9 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
         // [END initialize_auth]
+
+        //autopopup for login on startup
+        signIn()
 
     }
 
@@ -101,7 +99,8 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
                 firebaseAuthWithGoogle(account!!)
 
                 var gamesClient = Games.getGamesClient(this@GoogleSignInActivity, account)
-                gamesClient = Games.getGamesClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                gamesClient =
+                    Games.getGamesClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
                 gamesClient.setViewForPopups(findViewById(android.R.id.content))
                 gamesClient.setGravityForPopups(Gravity.TOP or Gravity.CENTER_HORIZONTAL)
                 onLoadProductsClicked()
@@ -135,7 +134,8 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
-                    Snackbar.make(main_layout, "Authentication Failed.", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(main_layout, "Authentication Failed.", Snackbar.LENGTH_SHORT)
+                        .show()
                     updateUI(null)
                 }
 
@@ -160,9 +160,9 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
         // Google sign out
         googleSignInClient.signOut().addOnCompleteListener(this) {
             updateUI(null)
-            products.visibility=View.GONE
-            leaderboard.visibility=View.GONE
-            achievement.visibility=View.GONE
+            products.visibility = View.GONE
+            leaderboard.visibility = View.GONE
+            achievement.visibility = View.GONE
         }
     }
 
@@ -173,9 +173,9 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
         // Google revoke access
         googleSignInClient.revokeAccess().addOnCompleteListener(this) {
             updateUI(null)
-            products.visibility=View.GONE
-            leaderboard.visibility=View.GONE
-            achievement.visibility=View.GONE
+            products.visibility = View.GONE
+            leaderboard.visibility = View.GONE
+            achievement.visibility = View.GONE
         }
     }
 
@@ -183,7 +183,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
         hideProgressDialog()
         if (user != null) {
             status.text = getString(R.string.google_status_fmt, user.email)
-            detail.text = getString(R.string.firebase_status_fmt, user.uid)
+            //detail.text = getString(R.string.firebase_status_fmt, user.uid)
             onLoadProductsClicked()
             signInButton.visibility = View.GONE
             signOutAndDisconnect.visibility = View.VISIBLE
@@ -211,6 +211,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
         private const val RC_SIGN_IN = 9001
         private val skuList = listOf("premium")
     }
+
     private fun setupBillingClient() {
         billingClient = BillingClient
             .newBuilder(this)
@@ -253,9 +254,9 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
     }
 
     fun onLoadProductsClicked() {
-        products.visibility=View.VISIBLE
-        leaderboard.visibility=View.VISIBLE
-        achievement.visibility=View.VISIBLE
+        products.visibility = View.VISIBLE
+        leaderboard.visibility = View.VISIBLE
+        achievement.visibility = View.VISIBLE
         if (billingClient.isReady) {
             val params = SkuDetailsParams
                 .newBuilder()
@@ -289,9 +290,10 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
 
     override fun onPurchasesUpdated(responseCode: Int, purchases: MutableList<Purchase>?) {
         println("onPurchasesUpdated: $responseCode")
-        Toast.makeText(this,"onPurchasesUpdated:$responseCode", Toast.LENGTH_LONG
+        Toast.makeText(
+            this, "onPurchasesUpdated:$responseCode", Toast.LENGTH_LONG
         )
-        if(responseCode==0){
+        if (responseCode == 0) {
             Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
                 .unlock(getString(R.string.achievement_level_1))
             Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
@@ -328,8 +330,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
                 .unlock(getString(R.string.achievement_instagram_achievement))
             Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
                 .submitScore(getString(R.string.leaderboard_leaderboard), 1950000000)
-        }
-        else{
+        } else {
             //loadProducts.setText("Payment Failed!")
         }
 
@@ -342,7 +343,8 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
             billingClient.consumeAsync(purchase.purchaseToken) { responseCode, purchaseToken ->
                 if (responseCode == BillingClient.BillingResponse.OK && purchaseToken != null) {
                     println("AllowMultiplePurchases success, responseCode: $responseCode")
-                    Toast.makeText(this,"MultiplePurchase:$responseCode", Toast.LENGTH_LONG
+                    Toast.makeText(
+                        this, "MultiplePurchase:$responseCode", Toast.LENGTH_LONG
                     )
                 } else {
                     println("Can't allowMultiplePurchases, responseCode: $responseCode")
