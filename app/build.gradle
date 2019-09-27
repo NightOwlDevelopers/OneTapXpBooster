@@ -12,13 +12,13 @@ android {
         applicationId "com.nightowldevelopers.onetapxpboost"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 11
-        versionName "1.0"
+        versionCode 35
+        versionName "2.6.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

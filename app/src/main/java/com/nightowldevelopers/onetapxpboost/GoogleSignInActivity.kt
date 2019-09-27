@@ -15,16 +15,16 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import kotlinx.android.synthetic.main.activity_google.detail
-import kotlinx.android.synthetic.main.activity_google.disconnectButton
-import kotlinx.android.synthetic.main.activity_google.main_layout
-import kotlinx.android.synthetic.main.activity_google.signInButton
-import kotlinx.android.synthetic.main.activity_google.signOutAndDisconnect
-import kotlinx.android.synthetic.main.activity_google.signOutButton
-import kotlinx.android.synthetic.main.activity_google.status
 import com.google.android.gms.games.Games
 import com.android.billingclient.api.*
 import kotlinx.android.synthetic.main.activity_main.*
+import android.view.Gravity
+import com.google.android.gms.games.Games.setGravityForPopups
+import com.google.android.gms.games.Games.setViewForPopups
+import com.google.android.gms.games.GamesClient
+import com.google.android.gms.tasks.OnSuccessListener
+import kotlinx.android.synthetic.main.activity_google.*
+import kotlinx.android.synthetic.main.activity_main.products
 
 
 /**
@@ -38,6 +38,9 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
     // [START declare_auth]
     private lateinit var auth: FirebaseAuth
     // [END declare_auth]
+    protected val RC_LEADERBOARD_UI = 9004
+    private val RC_ACHIEVEMENT_UI = 9003
+
 
     private lateinit var googleSignInClient: GoogleSignInClient
 
@@ -46,13 +49,17 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
         setContentView(R.layout.activity_google)
         setupBillingClient()
 
-        loadProducts.visibility=View.GONE
         products.visibility=View.GONE
+        leaderboard.visibility=View.GONE
+        achievement.visibility=View.GONE
 
         // Button listeners
         signInButton.setOnClickListener(this)
         signOutButton.setOnClickListener(this)
         disconnectButton.setOnClickListener(this)
+
+        achievement.setOnClickListener({showAchievements()})
+        leaderboard.setOnClickListener({showLeaderboard()})
 
         // [START config_signin]
         // Configure Google Sign In
@@ -69,6 +76,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
         // [END initialize_auth]
+
     }
 
     // [START on_start_check_user]
@@ -91,6 +99,12 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)
                 firebaseAuthWithGoogle(account!!)
+
+                var gamesClient = Games.getGamesClient(this@GoogleSignInActivity, account)
+                gamesClient = Games.getGamesClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                gamesClient.setViewForPopups(findViewById(android.R.id.content))
+                gamesClient.setGravityForPopups(Gravity.TOP or Gravity.CENTER_HORIZONTAL)
+                onLoadProductsClicked()
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e)
@@ -117,8 +131,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
                     Log.d(TAG, "signInWithCredential:success")
                     val user = auth.currentUser
                     updateUI(user)
-                    loadProducts.visibility=View.VISIBLE
-                    products.visibility=View.VISIBLE
+                    onLoadProductsClicked()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -147,6 +160,9 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
         // Google sign out
         googleSignInClient.signOut().addOnCompleteListener(this) {
             updateUI(null)
+            products.visibility=View.GONE
+            leaderboard.visibility=View.GONE
+            achievement.visibility=View.GONE
         }
     }
 
@@ -157,6 +173,9 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
         // Google revoke access
         googleSignInClient.revokeAccess().addOnCompleteListener(this) {
             updateUI(null)
+            products.visibility=View.GONE
+            leaderboard.visibility=View.GONE
+            achievement.visibility=View.GONE
         }
     }
 
@@ -165,7 +184,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
         if (user != null) {
             status.text = getString(R.string.google_status_fmt, user.email)
             detail.text = getString(R.string.firebase_status_fmt, user.uid)
-
+            onLoadProductsClicked()
             signInButton.visibility = View.GONE
             signOutAndDisconnect.visibility = View.VISIBLE
         } else {
@@ -190,7 +209,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
     companion object {
         private const val TAG = "GoogleActivity"
         private const val RC_SIGN_IN = 9001
-        private val skuList = listOf("premium","gas")
+        private val skuList = listOf("premium")
     }
     private fun setupBillingClient() {
         billingClient = BillingClient
@@ -233,6 +252,30 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
         }
     }
 
+    fun onLoadProductsClicked() {
+        products.visibility=View.VISIBLE
+        leaderboard.visibility=View.VISIBLE
+        achievement.visibility=View.VISIBLE
+        if (billingClient.isReady) {
+            val params = SkuDetailsParams
+                .newBuilder()
+                .setSkusList(skuList)
+                .setType(BillingClient.SkuType.INAPP)
+                .build()
+            billingClient.querySkuDetailsAsync(params) { responseCode, skuDetailsList ->
+                if (responseCode == BillingClient.BillingResponse.OK) {
+                    println("querySkuDetailsAsync, responseCode: $responseCode")
+                    initProductAdapter(skuDetailsList)
+                } else {
+                    println("Can't querySkuDetailsAsync, responseCode: $responseCode")
+                }
+            }
+        } else {
+            println("Billing Client not ready")
+        }
+    }
+
+
     private fun initProductAdapter(skuDetailsList: List<SkuDetails>) {
         productsAdapter = ProductsAdapter(skuDetailsList) {
             val billingFlowParams = BillingFlowParams
@@ -249,7 +292,6 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
         Toast.makeText(this,"onPurchasesUpdated:$responseCode", Toast.LENGTH_LONG
         )
         if(responseCode==0){
-            loadProducts.setText("Payment done!")
             Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
                 .unlock(getString(R.string.achievement_level_1))
             Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
@@ -288,7 +330,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
                 .submitScore(getString(R.string.leaderboard_leaderboard), 1950000000)
         }
         else{
-            loadProducts.setText("Payment Failed!")
+            //loadProducts.setText("Payment Failed!")
         }
 
         allowMultiplePurchases(purchases)
@@ -320,6 +362,19 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener,View.OnCli
                     }
                 }
             }
+    }
+
+    private fun showLeaderboard() {
+        Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .getLeaderboardIntent(getString(R.string.leaderboard_leaderboard))
+            .addOnSuccessListener { intent -> startActivityForResult(intent, RC_LEADERBOARD_UI) }
+    }
+
+
+    private fun showAchievements() {
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .achievementsIntent
+            .addOnSuccessListener { intent -> startActivityForResult(intent, RC_ACHIEVEMENT_UI) }
     }
 
 }

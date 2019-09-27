@@ -15,9 +15,9 @@
    limitations under the License.
 -->
 <resources>
-    <string name="app_name">Trivial Drive v2</string>
+    <string name="app_name">One Tap XP Booster</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">Trivial Drive v2</string>
+    <string name="title_activity_main">One Tap XP Booster</string>
 
     <string name="alert_no_gas">Oh, no! You are out of gas! Try buying some!</string>
     <string name="alert_drove">Vroooom, you drove a few miles.</string>
@@ -110,7 +110,7 @@
     <string name="firebase_user_management">Firebase User Management</string>
 
     <string name="google_status_fmt">Google User: %s</string>
-    <string name="google_title_text">Google Sign In</string>
+    <string name="google_title_text">One Tap XP Booster</string>
 
     <string name="facebook_status_fmt">Facebook User: %s</string>
     <string name="facebook_title_text">Facebook Login</string>
@@ -172,5 +172,7 @@
 
     <string name="players_exception">There was an issue communicating with players.</string>
     <string name="MainButtonText">Press</string>
+
+    <string name="app_details">Just A Tap Away! Pay and Get XP Boosted!</string>
 
 </resources>
