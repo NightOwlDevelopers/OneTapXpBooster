@@ -15,19 +15,12 @@
    limitations under the License.
 -->
 <resources>
-    <item name="screen_wait" type="id" />
-    <item name="screen_main" type="id" />
-    <item name="free_or_premium" type="id" />
-    <item name="gas_gauge" type="id" />
-    <item name="button_purchase" type="id" />
-    <item name="button_drive" type="id" />
 
 
-        <!-- app_id -->
+    <!-- app_id -->
         <string name="app_id" translatable="false">53286765302</string>
         <!-- package_name -->
-        <string name="package_name" translatable="false">com.nightowldevelopers.onetapxpboost</string>
-        <!-- achievement Level 1 -->
+    <!-- achievement Level 1 -->
         <string name="achievement_level_1" translatable="false">CgkI9oWOwcYBEAIQAQ</string>
         <!-- achievement Level 2 -->
         <string name="achievement_level_2" translatable="false">CgkI9oWOwcYBEAIQAg</string>

@@ -1,9 +1,9 @@
 package com.nightowldevelopers.onetapxpboost
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.android.billingclient.api.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -72,7 +72,8 @@ class MainActivity : AppCompatActivity(), PurchasesUpdatedListener {
 
     override fun onPurchasesUpdated(responseCode: Int, purchases: MutableList<Purchase>?) {
         println("onPurchasesUpdated: $responseCode")
-        Toast.makeText(this,"onPurchasesUpdated:$responseCode",Toast.LENGTH_LONG
+        Toast.makeText(
+            this, "onPurchasesUpdated:$responseCode", Toast.LENGTH_LONG
         )
         allowMultiplePurchases(purchases)
     }
@@ -83,7 +84,8 @@ class MainActivity : AppCompatActivity(), PurchasesUpdatedListener {
             billingClient.consumeAsync(purchase.purchaseToken) { responseCode, purchaseToken ->
                 if (responseCode == BillingClient.BillingResponse.OK && purchaseToken != null) {
                     println("AllowMultiplePurchases success, responseCode: $responseCode")
-                    Toast.makeText(this,"MultiplePurchase:$responseCode",Toast.LENGTH_LONG
+                    Toast.makeText(
+                        this, "MultiplePurchase:$responseCode", Toast.LENGTH_LONG
                     )
                 } else {
                     println("Can't allowMultiplePurchases, responseCode: $responseCode")
@@ -106,6 +108,6 @@ class MainActivity : AppCompatActivity(), PurchasesUpdatedListener {
     }
 
     companion object {
-        private val skuList = listOf("premium","gas")
+        private val skuList = listOf("premium", "gas")
     }
 }
