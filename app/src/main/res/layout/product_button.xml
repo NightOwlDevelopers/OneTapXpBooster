@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Button xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        android:textAllCaps="false" />
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@drawable/do_not_touch"
+        style="@style/MainScreenButton"
+        android:layout_width="298dp"
+        android:layout_height="288dp"
+        android:text="Button" android:textAllCaps="false"/>
