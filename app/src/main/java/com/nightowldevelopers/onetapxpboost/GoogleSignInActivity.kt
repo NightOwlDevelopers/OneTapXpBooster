@@ -1,8 +1,12 @@
 package com.nightowldevelopers.onetapxpboost
 
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -51,10 +55,90 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
         // Button listeners
         signInButton.setOnClickListener(this)
         signOutButton.setOnClickListener(this)
-        disconnectButton.setOnClickListener(this)
 
         achievement.setOnClickListener({ showAchievements() })
         leaderboard.setOnClickListener({ showLeaderboard() })
+
+        instagram.setOnClickListener ({
+            val uri = Uri.parse("http://instagram.com/nightowldevelopers")
+            val likeIng = Intent(Intent.ACTION_VIEW, uri)
+
+            likeIng.setPackage("com.instagram.android")
+
+            try {
+
+                startActivity(likeIng)
+                Toast.makeText(this@GoogleSignInActivity, "Follow Us \n& Unlock your Achievement", Toast.LENGTH_LONG).show()
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                    .unlock(getString(R.string.achievement_instagram_achievement))
+                Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                    .submitScore(getString(R.string.leaderboard_leaderboard), 50000)
+                    Handler().postDelayed(Runnable {
+                    // Do something after 5s = 5000ms
+                    val mPlayer = MediaPlayer.create(this@GoogleSignInActivity, R.raw.ta_da_sound_click)
+                    mPlayer.start()
+                    Toast.makeText(this@GoogleSignInActivity, "Hurrah! Your Instagram Achievement is Unlocked !!", Toast.LENGTH_LONG)
+                        .show()
+                }, 13000)
+            } catch (e: ActivityNotFoundException) {
+
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("http://instagram.com/nightowldevelopers")
+                    )
+                )
+                Toast.makeText(this@GoogleSignInActivity, "Follow Us \n& Unlock your Achievement", Toast.LENGTH_LONG).show()
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                    .unlock(getString(R.string.achievement_instagram_achievement))
+                Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                    .submitScore(getString(R.string.leaderboard_leaderboard), 200000)
+                Handler().postDelayed(Runnable {
+                    // Do something after 5s = 5000ms
+                    val mPlayer = MediaPlayer.create(this@GoogleSignInActivity, R.raw.ta_da_sound_click)
+                    mPlayer.start()
+                    Toast.makeText(this@GoogleSignInActivity, "Hurrah! Your Instagram Achievement is Unlocked !!", Toast.LENGTH_LONG).show()
+                }, 13000)
+            }
+
+        })
+
+        rateApp.setOnClickListener ({
+            Toast.makeText(this@GoogleSignInActivity, "Give 5-star Rating \n& Check your Achievement", Toast.LENGTH_SHORT).show()
+
+            val appPackageName = packageName // getPackageName() from Context or Activity object
+            try {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$appPackageName")))
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                    .unlock(getString(R.string.achievement_rate_on_playstore))
+                Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                    .submitScore(getString(R.string.leaderboard_leaderboard), 150000)
+            } catch (anfe: android.content.ActivityNotFoundException) {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")
+                    )
+                )
+            }
+
+        })
+
+        disconnectButton.setOnClickListener({
+            val developerurl = "4619988116632070762" // getPackageName() from Context or Activity object
+            try {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://dev?id=$developerurl")))
+            } catch (anfe: android.content.ActivityNotFoundException) {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://play.google.com/store/apps/dev?id=$developerurl")
+                    )
+                )
+            }
+
+        })
+
 
         // [START config_signin]
         // Configure Google Sign In
@@ -173,9 +257,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
         // Google revoke access
         googleSignInClient.revokeAccess().addOnCompleteListener(this) {
             updateUI(null)
-            products.visibility = View.GONE
-            leaderboard.visibility = View.GONE
-            achievement.visibility = View.GONE
+
         }
     }
 
@@ -187,12 +269,29 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
             onLoadProductsClicked()
             signInButton.visibility = View.GONE
             signOutAndDisconnect.visibility = View.VISIBLE
+            homeLogo.visibility=View.GONE
+
+            textView4.visibility=View.VISIBLE
+            textView3.visibility=View.VISIBLE
+            instagram.visibility=View.VISIBLE
+            rateApp.visibility=View.VISIBLE
+            textViewRate.visibility=View.VISIBLE
+            textViewIG.visibility=View.VISIBLE
+
         } else {
             status.setText(R.string.signed_out)
             detail.text = null
 
+            homeLogo.visibility=View.VISIBLE
             signInButton.visibility = View.VISIBLE
             signOutAndDisconnect.visibility = View.GONE
+            textView4.visibility=View.GONE
+            textView3.visibility=View.GONE
+            instagram.visibility=View.GONE
+            rateApp.visibility=View.GONE
+            textViewRate.visibility=View.GONE
+            textViewIG.visibility=View.GONE
+
         }
     }
 
