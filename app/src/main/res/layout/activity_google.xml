@@ -113,9 +113,9 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/signOutAndDisconnect1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/status" />
+            app:layout_constraintTop_toBottomOf="@+id/status" app:layout_constraintVertical_bias="0.425"/>
 
     <Button
             android:id="@+id/instagram"
@@ -187,15 +187,15 @@
 
     <ImageView
             android:id="@+id/homeLogo"
-            android:layout_width="258dp"
-            android:layout_height="226dp"
+            android:layout_width="184dp"
+            android:layout_height="171dp"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/signOutAndDisconnect1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/status"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_launcher_round"/>
 
     <TextView
             android:id="@+id/detail"
@@ -221,15 +221,15 @@
 
         <com.google.android.gms.common.SignInButton
                 android:id="@+id/signInButton"
-                android:layout_width="379dp"
-                android:layout_height="60dp"
+                android:layout_width="286dp"
+                android:layout_height="53dp"
                 android:layout_centerInParent="true"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/signOutAndDisconnect"
