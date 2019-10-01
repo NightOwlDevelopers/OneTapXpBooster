@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/main_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white">
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:id="@+id/main_layout"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:background="@android:color/white">
 
     <ImageView
             android:id="@+id/imageView2"
@@ -17,7 +17,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
             android:id="@+id/textView10"
@@ -29,7 +29,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"/>
 
     <TextView
             android:id="@+id/status"
@@ -38,7 +38,7 @@
             android:text="@string/app_details"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintTop_toBottomOf="@+id/textView10"/>
 
     <Button
             android:id="@+id/leaderboard"
@@ -54,7 +54,7 @@
             app:layout_constraintEnd_toStartOf="@+id/achievement"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
             android:id="@+id/textView4"
@@ -69,7 +69,7 @@
             app:layout_constraintEnd_toStartOf="@+id/textView3"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/leaderboard" />
+            app:layout_constraintTop_toBottomOf="@+id/leaderboard"/>
 
     <TextView
             android:id="@+id/textView3"
@@ -86,7 +86,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/achievement" />
+            app:layout_constraintTop_toBottomOf="@+id/achievement"/>
 
 
     <Button
@@ -103,7 +103,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/products"
@@ -122,51 +122,32 @@
             style="@style/MainScreenButton"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginLeft="56dp"
+            android:layout_marginBottom="60dp"
             android:background="@drawable/instagram_new"
-            app:layout_constraintEnd_toStartOf="@+id/rateApp"
-            app:layout_constraintHorizontal_bias="0.175"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/products" />
+            app:layout_constraintBottom_toTopOf="@+id/signOutAndDisconnect1"
+            app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
             android:id="@+id/textViewIG"
             style="@style/MainScreenButtonBlurb"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_height="wrap_content"
             android:text="FollowUs On Instagram\n to unlock Achievement"
-            android:textColor="#060707"
-            app:layout_constraintEnd_toStartOf="@+id/textViewRate"
-            app:layout_constraintHorizontal_bias="0.111"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/instagram" />
+            android:textColor="#060707" app:layout_constraintEnd_toEndOf="@+id/instagram"
+            app:layout_constraintStart_toStartOf="@+id/instagram" app:layout_constraintTop_toBottomOf="@+id/instagram"/>
 
     <TextView
             android:id="@+id/textViewRate"
             style="@style/MainScreenButtonBlurb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:textAlignment="center"
+            android:layout_marginTop="8dp"
             android:text="Rate Us 5star\n and Won 10k Free XP"
-            android:textColor="#060707"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.92"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rateApp" />
+            android:textAlignment="center"
+            android:textColor="#060707" app:layout_constraintEnd_toEndOf="@+id/rateApp"
+            app:layout_constraintStart_toStartOf="@+id/rateApp" app:layout_constraintTop_toBottomOf="@+id/rateApp"/>
 
 
     <Button
@@ -174,16 +155,10 @@
             style="@style/MainScreenButton"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginRight="40dp"
-            android:background="@drawable/rating"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.942"
-            app:layout_constraintStart_toEndOf="@+id/homeLogo"
-            app:layout_constraintTop_toBottomOf="@+id/products" />
+            android:layout_marginEnd="56dp"
+            android:layout_marginRight="56dp" android:layout_marginBottom="60dp"
+            android:background="@drawable/rating" app:layout_constraintBottom_toTopOf="@+id/signOutAndDisconnect1"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
             android:id="@+id/homeLogo"
@@ -204,7 +179,7 @@
             android:layout_height="886dp"
             android:visibility="gone"
             tools:ignore="MissingConstraints"
-            tools:text="Firebase User ID: 123456789abc" />
+            tools:text="Firebase User ID: 123456789abc"/>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -257,7 +232,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/disconnectButton"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
             <Button
                     android:id="@+id/disconnectButton"
@@ -271,7 +246,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/signOutButton"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

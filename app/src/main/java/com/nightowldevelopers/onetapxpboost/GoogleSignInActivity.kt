@@ -162,7 +162,8 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
                 startActivity(
                     Intent(
                         Intent.ACTION_VIEW,
-                        Uri.parse("market://dev?id=$developerurl")
+                        //Uri.parse("market://dev?id=$developerurl")
+                        Uri.parse("market://details?id=com.nightowldevelopers.levelup2")
                     )
                 )
                 Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
