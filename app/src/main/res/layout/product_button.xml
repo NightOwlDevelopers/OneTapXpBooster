@@ -2,6 +2,8 @@
 <Button xmlns:android="http://schemas.android.com/apk/res/android"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:textColor="@color/ButtonTextColor" android:theme="@style/Base.Theme.MaterialComponents.Dialog"/>
+        android:layout_height="75dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp" android:textAllCaps="false"
+        android:textColor="@color/ButtonTextColor" android:textSize="18sp"
+        android:theme="@style/Base.Theme.MaterialComponents.Dialog"/>
