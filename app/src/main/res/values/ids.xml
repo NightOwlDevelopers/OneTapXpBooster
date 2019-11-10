@@ -16,14 +16,14 @@ Save this file as res/values/games-ids.xml in your project.
     <string name="achievement_level_3" translatable="false">CgkI9oWOwcYBEAIQAw</string>
     <!-- achievement Level 4 -->
     <string name="achievement_level_4" translatable="false">CgkI9oWOwcYBEAIQBA</string>
-    <!-- achievement Level 5 !! Rate App and Win Additional XP -->
-    <string name="achievement_level_5__rate_app_and_win_additional_xp" translatable="false">CgkI9oWOwcYBEAIQBQ</string>
+    <!-- achievement Level 5 -->
+    <string name="achievement_level_5" translatable="false">CgkI9oWOwcYBEAIQBQ</string>
     <!-- achievement Level 6 !! Follow us on Instagram and unlock Level 7 -->
     <string name="achievement_level_6__follow_us_on_instagram_and_unlock_level_7" translatable="false">CgkI9oWOwcYBEAIQBg</string>
     <!-- achievement Instagram Achievement -->
     <string name="achievement_instagram_achievement" translatable="false">CgkI9oWOwcYBEAIQCA</string>
-    <!-- achievement Rate on Playstore -->
-    <string name="achievement_rate_on_playstore" translatable="false">CgkI9oWOwcYBEAIQCQ</string>
+    <!-- achievement Level 8 -->
+    <string name="achievement_level_8" translatable="false">CgkI9oWOwcYBEAIQCQ</string>
     <!-- achievement More Xp -->
     <string name="achievement_more_xp" translatable="false">CgkI9oWOwcYBEAIQCg</string>
     <!-- achievement Level 10 -->

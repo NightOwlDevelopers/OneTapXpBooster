@@ -1,6 +1,7 @@
 package com.nightowldevelopers.onetapxpboost
 
 
+import android.animation.Animator
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.media.MediaPlayer
@@ -10,6 +11,8 @@ import android.os.Handler
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.ViewAnimationUtils
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Toast
 import com.android.billingclient.api.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -53,8 +56,10 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
         achievement.visibility = View.GONE
 
         // Button listeners
+        signInButton.resetAfterFailed = true
         signInButton.setOnClickListener(this)
         signOutButton.setOnClickListener(this)
+
 
         achievement.setOnClickListener { showAchievements() }
         leaderboard.setOnClickListener { showLeaderboard() }
@@ -121,38 +126,38 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
 
         }
 
-       /* rateApp.setOnClickListener {
-            Toast.makeText(
-                this@GoogleSignInActivity,
-                "Give 5-star Rating \n& Check your Achievement",
-                Toast.LENGTH_SHORT
-            ).show()
-            val appPackageName = packageName // getPackageName() from Context or Activity object
-            try {
-                startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("market://details?id=$appPackageName")
-                    )
-                )
-                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                    .unlock(getString(R.string.achievement_rate_on_playstore))
-                Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                    .submitScore(getString(R.string.leaderboard_leaderboard), 150000)
-            } catch (anfe: ActivityNotFoundException) {
-                startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")
-                    )
-                )
-                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                    .unlock(getString(R.string.achievement_rate_on_playstore))
-                Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                    .submitScore(getString(R.string.leaderboard_leaderboard), 150000)
-            }
+        /* rateApp.setOnClickListener {
+             Toast.makeText(
+                 this@GoogleSignInActivity,
+                 "Give 5-star Rating \n& Check your Achievement",
+                 Toast.LENGTH_SHORT
+             ).show()
+             val appPackageName = packageName // getPackageName() from Context or Activity object
+             try {
+                 startActivity(
+                     Intent(
+                         Intent.ACTION_VIEW,
+                         Uri.parse("market://details?id=$appPackageName")
+                     )
+                 )
+                 Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                     .unlock(getString(R.string.achievement_rate_on_playstore))
+                 Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                     .submitScore(getString(R.string.leaderboard_leaderboard), 150000)
+             } catch (anfe: ActivityNotFoundException) {
+                 startActivity(
+                     Intent(
+                         Intent.ACTION_VIEW,
+                         Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")
+                     )
+                 )
+                 Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                     .unlock(getString(R.string.achievement_rate_on_playstore))
+                 Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                     .submitScore(getString(R.string.leaderboard_leaderboard), 150000)
+             }
 
-        }*/
+         }*/
 
 
         disconnectButton.setOnClickListener {
@@ -237,6 +242,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e)
+                signInButton!!.loadingFailed()
                 // [START_EXCLUDE]
                 updateUI(null)
                 // [END_EXCLUDE]
@@ -259,9 +265,11 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
                     val user = auth.currentUser
+                    signInButton!!.loadingSuccessful()
                     updateUI(user)
                     onLoadProductsClicked()
                 } else {
+                    signInButton!!.loadingFailed()
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                     Snackbar.make(main_layout, "Authentication Failed.", Snackbar.LENGTH_SHORT)
@@ -278,6 +286,9 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
 
     // [START signin]
     private fun signIn() {
+        signInButton!!.startLoading()
+        //send login request
+
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
@@ -285,6 +296,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
 
     private fun signOut() {
         // Firebase sign out
+        signInButton.reset()
         auth.signOut()
 
         // Google sign out
@@ -310,12 +322,13 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
     private fun updateUI(user: FirebaseUser?) {
         hideProgressDialog()
         if (user != null) {
+            progressBar2.visibility=View.VISIBLE
             status.text = getString(R.string.google_status_fmt, user.email)
             //detail.text = getString(R.string.firebase_status_fmt, user.uid)
             onLoadProductsClicked()
             signInButton.visibility = View.GONE
             signOutAndDisconnect.visibility = View.VISIBLE
-            homeLogo.visibility = View.GONE
+            //homeLogo.visibility = View.GONE
 
             textView4.visibility = View.VISIBLE
             textView3.visibility = View.VISIBLE
@@ -329,16 +342,17 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
             status.setText(R.string.signed_out)
             detail.text = null
 
-            homeLogo.visibility = View.VISIBLE
+            //Google sign in failedhomeLogo.visibility = View.VISIBLE
             signInButton.visibility = View.VISIBLE
             signOutAndDisconnect.visibility = View.GONE
             textView4.visibility = View.GONE
             textView3.visibility = View.GONE
             instagram.visibility = View.GONE
-           /* rateApp.visibility = View.GONE
-            textViewRate.visibility = View.GONE*/
+            /* rateApp.visibility = View.GONE
+             textViewRate.visibility = View.GONE*/
 
             textViewIG.visibility = View.GONE
+            progressBar2.visibility=View.GONE
 
         }
     }
@@ -369,6 +383,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
             override fun onBillingSetupFinished(@BillingClient.BillingResponse billingResponseCode: Int) {
                 if (billingResponseCode == BillingClient.BillingResponse.OK) {
                     println("BILLING | startConnection | RESULT OK")
+                    progressBar2.visibility=View.GONE
                 } else {
                     println("BILLING | startConnection | RESULT: $billingResponseCode")
                 }
@@ -455,16 +470,16 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
                 .submitScore(getString(R.string.leaderboard_leaderboard), 30000)
             Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
                 .unlock(getString(R.string.achievement_level_4))
+            Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                .unlock(getString(R.string.achievement_level_5))
             Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
                 .submitScore(getString(R.string.leaderboard_leaderboard), 40000)
-            Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                .unlock(getString(R.string.achievement_level_5__rate_app_and_win_additional_xp))
-            Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                .submitScore(getString(R.string.leaderboard_leaderboard), 50000)
             Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
                 .unlock(getString(R.string.achievement_level_6__follow_us_on_instagram_and_unlock_level_7))
             Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
                 .submitScore(getString(R.string.leaderboard_leaderboard), 60000)
+            Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                .unlock(getString(R.string.achievement_level_8))
             Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
                 .unlock(getString(R.string.achievement_level_10))
             Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)

@@ -18,8 +18,9 @@
     <color name="primary_color">#37474F</color>
     <color name="primary_color_dark">#263238</color>
     <color name="ascent_color">#4285F4</color>
-
-    <color name="colorPrimary">#039BE5</color>
+    <color name="colorPrimary">#40464E</color>
+    <color name="colorPrimaryDark">#383d45</color>
+    <color name="colorAccent">#9acc14</color>
 
     <color name="grey_100">#F5F5F5</color>
     <color name="grey_300">#00E0E0E0</color>
