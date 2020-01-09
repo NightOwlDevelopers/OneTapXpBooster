@@ -36,8 +36,8 @@ Save this file as res/values/games-ids.xml in your project.
     <string name="achievement_level_13" translatable="false">CgkI9oWOwcYBEAIQDQ</string>
     <!-- achievement Level 14 -->
     <string name="achievement_level_14" translatable="false">CgkI9oWOwcYBEAIQDg</string>
-    <!-- achievement Level 15 -->
-    <string name="achievement_level_15" translatable="false">CgkI9oWOwcYBEAIQDw</string>
+    <!-- achievement Rate Achievement -->
+    <string name="achievement_rate_achievement" translatable="false">CgkI9oWOwcYBEAIQDw</string>
     <!-- leaderboard Leaderboard -->
     <string name="leaderboard_leaderboard" translatable="false">CgkI9oWOwcYBEAIQBw</string>
 </resources>

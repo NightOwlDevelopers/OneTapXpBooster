@@ -1,7 +1,6 @@
 package com.nightowldevelopers.onetapxpboost
 
 
-import android.animation.Animator
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.media.MediaPlayer
@@ -11,8 +10,6 @@ import android.os.Handler
 import android.util.Log
 import android.view.Gravity
 import android.view.View
-import android.view.ViewAnimationUtils
-import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Toast
 import com.android.billingclient.api.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -52,7 +49,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
         setupBillingClient()
 
         products.visibility = View.GONE
-        leaderboard.visibility = View.GONE
+        instagram.visibility = View.GONE
         achievement.visibility = View.GONE
 
         // Button listeners
@@ -62,7 +59,9 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
 
 
         achievement.setOnClickListener { showAchievements() }
-        leaderboard.setOnClickListener { showLeaderboard() }
+/*
+        instagram.setOnClickListener { showLeaderboard() }
+*/
 
         instagram.setOnClickListener {
             val uri = Uri.parse("http://instagram.com/nightowldevelopers")
@@ -126,7 +125,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
 
         }
 
-        /* rateApp.setOnClickListener {
+         rateApp.setOnClickListener {
              Toast.makeText(
                  this@GoogleSignInActivity,
                  "Give 5-star Rating \n& Check your Achievement",
@@ -141,7 +140,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
                      )
                  )
                  Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                     .unlock(getString(R.string.achievement_rate_on_playstore))
+                     .unlock(getString(R.string.achievement_rate_achievement))
                  Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
                      .submitScore(getString(R.string.leaderboard_leaderboard), 150000)
              } catch (anfe: ActivityNotFoundException) {
@@ -152,12 +151,12 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
                      )
                  )
                  Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                     .unlock(getString(R.string.achievement_rate_on_playstore))
+                     .unlock(getString(R.string.achievement_rate_achievement))
                  Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
                      .submitScore(getString(R.string.leaderboard_leaderboard), 150000)
              }
 
-         }*/
+         }
 
 
         disconnectButton.setOnClickListener {
@@ -303,7 +302,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
         googleSignInClient.signOut().addOnCompleteListener(this) {
             updateUI(null)
             products.visibility = View.GONE
-            leaderboard.visibility = View.GONE
+            instagram.visibility = View.GONE
             achievement.visibility = View.GONE
         }
     }
@@ -323,7 +322,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
         hideProgressDialog()
         if (user != null) {
             progressBar2.visibility=View.VISIBLE
-            status.text = getString(R.string.google_status_fmt, user.email)
+            status.text = getString(R.string.google_status_fmt, user.displayName)
             //detail.text = getString(R.string.firebase_status_fmt, user.uid)
             onLoadProductsClicked()
             signInButton.visibility = View.GONE
@@ -332,7 +331,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
 
             textView4.visibility = View.VISIBLE
             textView3.visibility = View.VISIBLE
-            instagram.visibility = View.VISIBLE
+            rateApp.visibility = View.VISIBLE
             /*rateApp.visibility = View.VISIBLE
             textViewRate.visibility = View.VISIBLE*/
 
@@ -347,7 +346,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
             signOutAndDisconnect.visibility = View.GONE
             textView4.visibility = View.GONE
             textView3.visibility = View.GONE
-            instagram.visibility = View.GONE
+            rateApp.visibility = View.GONE
             /* rateApp.visibility = View.GONE
              textViewRate.visibility = View.GONE*/
 
@@ -417,7 +416,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
 
     fun onLoadProductsClicked() {
         products.visibility = View.VISIBLE
-        leaderboard.visibility = View.VISIBLE
+        instagram.visibility = View.VISIBLE
         achievement.visibility = View.VISIBLE
         if (billingClient.isReady) {
             val params = SkuDetailsParams
@@ -500,8 +499,6 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
                 .unlock(getString(R.string.achievement_level_14))
             Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
                 .submitScore(getString(R.string.leaderboard_leaderboard), 140000)
-            Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                .unlock(getString(R.string.achievement_level_15))
             Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
                 .submitScore(getString(R.string.leaderboard_leaderboard), 150000)
 
@@ -543,11 +540,11 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
             }
     }
 
-    private fun showLeaderboard() {
+    /*private fun showLeaderboard() {
         Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
             .getLeaderboardIntent(getString(R.string.leaderboard_leaderboard))
             .addOnSuccessListener { intent -> startActivityForResult(intent, RC_LEADERBOARD_UI) }
-    }
+    }*/
 
 
     private fun showAchievements() {
