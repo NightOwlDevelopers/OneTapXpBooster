@@ -383,7 +383,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
             override fun onBillingSetupFinished(@BillingClient.BillingResponse billingResponseCode: Int) {
                 if (billingResponseCode == BillingClient.BillingResponse.OK) {
                     println("BILLING | startConnection | RESULT OK")
-                    progressBar2.visibility=View.GONE
+                    //progressBar2.visibility=View.GONE
                 } else {
                     println("BILLING | startConnection | RESULT: $billingResponseCode")
                 }
