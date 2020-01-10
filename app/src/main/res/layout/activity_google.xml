@@ -73,8 +73,8 @@
     <Button
             android:id="@+id/instagram"
             style="@style/MainScreenButton"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/instagram"
@@ -88,11 +88,11 @@
     <TextView
             android:id="@+id/textView4"
             style="@style/MainScreenButtonBlurb"
-            android:layout_marginTop="8dp"
             android:gravity="center"
             android:text="Follow us On Instagram\n to get some XP!"
             android:textColor="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="@+id/instagram"
+            app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="@+id/instagram"
             app:layout_constraintTop_toBottomOf="@+id/instagram" />
 
@@ -261,11 +261,13 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <View
             android:id="@+id/animate_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorPrimaryDark"
             android:visibility="invisible"
-            />
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
