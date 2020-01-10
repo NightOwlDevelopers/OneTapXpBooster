@@ -73,11 +73,11 @@
     <Button
             android:id="@+id/instagram"
             style="@style/MainScreenButton"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/instagram_new"
+            android:background="@drawable/instagram"
             app:layout_constraintBottom_toBottomOf="@+id/homeLogo"
             app:layout_constraintEnd_toStartOf="@+id/rateApp"
             app:layout_constraintHorizontal_bias="0.8"
@@ -88,11 +88,11 @@
     <TextView
             android:id="@+id/textView4"
             style="@style/MainScreenButtonBlurb"
-            android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="FollowUs On Instagram\n to get some XP!"
+            android:text="Follow us On Instagram\n to get some XP!"
             android:textColor="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="@+id/instagram"
+            app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="@+id/instagram"
             app:layout_constraintTop_toBottomOf="@+id/instagram" />
 
@@ -134,7 +134,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/status" app:layout_constraintVertical_bias="0.696"/>
+            app:layout_constraintTop_toBottomOf="@+id/status"
+            app:layout_constraintVertical_bias="0.673" />
 
     <Button
             android:id="@+id/rateApp"
@@ -260,11 +261,13 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <View
             android:id="@+id/animate_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorPrimaryDark"
             android:visibility="invisible"
-            />
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
