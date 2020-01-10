@@ -24,6 +24,8 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_google.*
 import kotlinx.android.synthetic.main.activity_main.products
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 
 
 /**
@@ -33,7 +35,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
 
     private lateinit var billingClient: BillingClient
     private lateinit var productsAdapter: ProductsAdapter
-
+    private lateinit var mFirebaseRemoteConfig: FirebaseRemoteConfig
     // [START declare_auth]
     private lateinit var auth: FirebaseAuth
     // [END declare_auth]
@@ -160,34 +162,50 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
 
 
         disconnectButton.setOnClickListener {
-            val developerurl =
-                "4619988116632070762" // getPackageName() from Context or Activity object
-            try {
-                startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW,
-                        //Uri.parse("market://dev?id=$developerurl")
-                        Uri.parse("market://details?id=com.nightowldevelopers.levelup2")
+            val app_id = mFirebaseRemoteConfig.getString("App_Id")
+            val xp_linkbutton = mFirebaseRemoteConfig.getString("xp_linkbutton")
+            disconnectButton.isEnabled= xp_linkbutton.toBoolean()
+            if(xp_linkbutton.toBoolean()) {
+                try {
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=$app_id")
+                        )
                     )
-                )
-                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                    .unlock(getString(R.string.achievement_more_xp))
-                Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                    .submitScore(getString(R.string.leaderboard_leaderboard), 80000)
-            } catch (anfe: ActivityNotFoundException) {
-                startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("https://play.google.com/store/apps/dev?id=$developerurl")
+                    Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                        .unlock(getString(R.string.achievement_more_xp))
+                    Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                        .submitScore(getString(R.string.leaderboard_leaderboard), 80000)
+                } catch (anfe: ActivityNotFoundException) {
+                    var developerurl = 4619988116632070762
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("https://play.google.com/store/apps/dev?id=$developerurl")
+                            //Uri.parse("market://details?id=$app_id")
+                        )
                     )
-                )
-                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                    .unlock(getString(R.string.achievement_more_xp))
-                Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                    .submitScore(getString(R.string.leaderboard_leaderboard), 80000)
+                    Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                        .unlock(getString(R.string.achievement_more_xp))
+                    Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                        .submitScore(getString(R.string.leaderboard_leaderboard), 80000)
+                }
             }
 
+
         }
+
+        //region RemoteConfig
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
+        //Enable Debug mode for frequent fetches
+        val configSettings = FirebaseRemoteConfigSettings.Builder()
+            .setDeveloperModeEnabled(BuildConfig.DEBUG)
+            .build()
+        mFirebaseRemoteConfig.setConfigSettings(configSettings)
+        mFirebaseRemoteConfig.setDefaults(R.xml.firebasedefaults)
+        getRemoteConfigValues()
+        //endregion
 
 
         // [START config_signin]
@@ -199,6 +217,7 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
             .build()
         // [END config_signin]
 
+
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         // [START initialize_auth]
@@ -209,6 +228,31 @@ class GoogleSignInActivity : BaseActivity(), PurchasesUpdatedListener, View.OnCl
         //autopopup for login on startup
         signIn()
 
+    }
+    private fun getRemoteConfigValues() {
+
+        var cacheExpiration: Long = 7200//2 hours
+
+        // Allow fetch on every call for now - remove/comment on production builds
+        if (mFirebaseRemoteConfig.info.configSettings.isDeveloperModeEnabled) {
+            cacheExpiration = 0
+        }
+
+        mFirebaseRemoteConfig.fetch(cacheExpiration)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    //   Toast.makeText(this, "Fetch Succeeded", Toast.LENGTH_SHORT).show()
+                    mFirebaseRemoteConfig.activateFetched()
+                } else {
+                    //   Toast.makeText(this, "Fetch Failed", Toast.LENGTH_SHORT).show()
+                }
+
+                setRemoteConfigValues()
+            }
+    }
+
+    private fun setRemoteConfigValues() {
+        val app_id = mFirebaseRemoteConfig.getString("App_Id")
     }
 
     // [START on_start_check_user]

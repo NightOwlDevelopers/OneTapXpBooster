@@ -36,6 +36,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    //Firebase Library
+    implementation 'com.google.firebase:firebase-config:16.1.0'
     implementation 'com.google.firebase:firebase-auth:19.0.0'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
     implementation 'com.google.android.material:material:1.0.0'
