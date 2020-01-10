@@ -71,36 +71,42 @@
             app:layout_constraintTop_toBottomOf="@+id/textView10"/>
 
     <Button
-            android:id="@+id/leaderboard"
+            android:id="@+id/instagram"
             style="@style/MainScreenButton"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp" android:background="@drawable/achieve"
-            app:layout_constraintBottom_toBottomOf="@+id/homeLogo" app:layout_constraintEnd_toStartOf="@+id/instagram"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/instagram_new"
+            app:layout_constraintBottom_toBottomOf="@+id/homeLogo"
+            app:layout_constraintEnd_toStartOf="@+id/rateApp"
+            app:layout_constraintHorizontal_bias="0.8"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/instagram" app:layout_constraintVertical_bias="0.75"/>
+            app:layout_constraintTop_toTopOf="@+id/rateApp"
+            app:layout_constraintVertical_bias="0.75" />
 
     <TextView
             android:id="@+id/textView4"
             style="@style/MainScreenButtonBlurb"
             android:layout_marginTop="8dp"
-            android:text="@string/invite_players_explanation"
+            android:gravity="center"
+            android:text="FollowUs On Instagram\n to get some XP!"
             android:textColor="@color/colorAccent"
-            app:layout_constraintEnd_toEndOf="@+id/leaderboard"
-            app:layout_constraintStart_toStartOf="@+id/leaderboard"
-            app:layout_constraintTop_toBottomOf="@+id/leaderboard"/>
+            app:layout_constraintEnd_toEndOf="@+id/instagram"
+            app:layout_constraintStart_toStartOf="@+id/instagram"
+            app:layout_constraintTop_toBottomOf="@+id/instagram" />
 
     <TextView
             android:id="@+id/textView3"
             style="@style/MainScreenButtonBlurb"
             android:layout_width="wrap_content"
             android:layout_height="16dp"
-            android:layout_marginTop="8dp" android:text="@string/see_invitations_explanation"
+            android:layout_marginTop="8dp"
+            android:text="@string/see_invitations_explanation"
             android:textColor="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="@+id/achievement"
             app:layout_constraintStart_toStartOf="@+id/achievement"
-            app:layout_constraintTop_toBottomOf="@+id/achievement"/>
+            app:layout_constraintTop_toBottomOf="@+id/achievement" />
 
 
     <Button
@@ -109,11 +115,14 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp" android:background="@drawable/achievemnet_google_play_games_png"
-            app:layout_constraintBottom_toTopOf="@+id/homeLogo" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.531"
-            app:layout_constraintStart_toEndOf="@+id/instagram" app:layout_constraintTop_toTopOf="@+id/instagram"
-            app:layout_constraintVertical_bias="0.75"/>
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/achievemnet_google_play_games_png"
+            app:layout_constraintBottom_toTopOf="@+id/homeLogo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toEndOf="@+id/rateApp"
+            app:layout_constraintTop_toTopOf="@+id/rateApp"
+            app:layout_constraintVertical_bias="0.75" />
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/products"
@@ -128,25 +137,29 @@
             app:layout_constraintTop_toBottomOf="@+id/status" app:layout_constraintVertical_bias="0.696"/>
 
     <Button
-            android:id="@+id/instagram"
+            android:id="@+id/rateApp"
             style="@style/MainScreenButton"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:layout_marginTop="48dp"
-            android:background="@drawable/instagram_new" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/status"/>
+            android:background="@drawable/rating5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/status" />
 
     <TextView
             android:id="@+id/textViewIG"
             style="@style/MainScreenButtonBlurb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:gravity="center"
-            android:text="FollowUs On Instagram\n to unlock some Achievement"
+            android:text="Rate 5 Star to get 10K XP!"
             android:textColor="@color/colorAccent"
-            app:layout_constraintEnd_toEndOf="@+id/instagram" app:layout_constraintStart_toStartOf="@+id/instagram"
-            app:layout_constraintTop_toBottomOf="@+id/instagram"/>
+            app:layout_constraintEnd_toEndOf="@+id/rateApp"
+            app:layout_constraintStart_toStartOf="@+id/rateApp"
+            app:layout_constraintTop_toBottomOf="@+id/rateApp" />
 
 
     <ImageView
