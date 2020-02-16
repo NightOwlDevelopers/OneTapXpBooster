@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+
+        <key>versionCode</key>
+        <value>16</value>
+    </entry>
+    <entry>
+
+        <key>App_Id</key>
+        <value>com.nightowldevelopers.onetapxpbooster2</value>
+    </entry>
+    <entry>
+
+        <key>Alert_Title</key>
+        <value>Update Alert!!</value>
+    </entry>
+    <entry>
+
+        <key>Alert_Message</key>
+        <value>This App got new update with some new some new Features and stability, Update Now</value>
+    </entry>
+    <entry>
+
+        <key>Alert_Ok_Btn</key>
+        <value>Update</value>
+    </entry>
+    <entry>
+
+        <key>Alert_No_Btn</key>
+        <value>Not Now</value>
+    </entry>
+
+
+
+</defaultsMap>

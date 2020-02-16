@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "281571886559",
+    "firebase_url": "https://quick-xp-booster-43821522.firebaseio.com",
+    "project_id": "quick-xp-booster-43821522",
+    "storage_bucket": "quick-xp-booster-43821522.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281571886559:android:5eb8c0434ee1501be6706a",
+        "android_client_info": {
+          "package_name": "com.smartappstudio.quickxpbooster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "281571886559-r2qq66ulgnrvfdurekcgmma8t5q0r3d8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smartappstudio.quickxpbooster",
+            "certificate_hash": "13d839a53d34eb5c3b6b81af86d0e3fd39d48513"
+          }
+        },
+        {
+          "client_id": "281571886559-pimam9jrj32gj14bcqbca8q9608fd543.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwVOH7kTyxx7ysg23KN-egLBScP2OX1IY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "281571886559-pimam9jrj32gj14bcqbca8q9608fd543.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
