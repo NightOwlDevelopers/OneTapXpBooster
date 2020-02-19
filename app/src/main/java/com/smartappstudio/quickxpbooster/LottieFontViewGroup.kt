@@ -1,5 +1,6 @@
 package com.smartappstudio.quickxpbooster
 
+import android.animation.Animator
 import android.content.Context
 import android.text.InputType
 import android.util.AttributeSet
@@ -25,20 +26,26 @@ class LottieFontViewGroup @JvmOverloads constructor(
 
     private val cursorView: LottieAnimationView by lazy { LottieAnimationView(context) }
 
+    val sampleText="QUICKBOOST"
+
+    var pos=0
+
+
     init {
         isFocusableInTouchMode = true
         LottieCompositionFactory.fromAsset(context, "Mobilo/BlinkingCursor.json")
             .addListener {
                 cursorView.layoutParams = FrameLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
+                    /*ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT*/
+                measuredWidth/4,measuredWidth/4
                 )
                 cursorView.setComposition(it)
                 cursorView.repeatCount = LottieDrawable.INFINITE
                 cursorView.playAnimation()
                 addView(cursorView)
             }
-        val sampleText="QUICKBOOST"
+        /*val sampleText="Q"
         val sampleTextIterator = sampleText.iterator()
         while (sampleTextIterator.hasNext()) {
             val letter=sampleTextIterator.next()
@@ -53,9 +60,25 @@ class LottieFontViewGroup @JvmOverloads constructor(
                         addComposition(it)
                     }
             }
-            Thread.sleep(200,10)
-        }
+            //Thread.sleep(200,10)
+        }*/
+        val letter=sampleText[0]
+        val fileName = "Mobilo/$letter.json"
+        LottieCompositionFactory.fromAsset(context, fileName)
+            .addListener {
+                addComposition(it,pos)
+            }
 
+
+    }
+
+    private fun printX(pos:Int) {
+        val letter=sampleText[pos]
+        val fileName = "Mobilo/$letter.json"
+        LottieCompositionFactory.fromAsset(context, fileName)
+            .addListener {
+                addComposition(it,pos)
+            }
     }
 
     private fun addSpace() {
@@ -171,8 +194,8 @@ class LottieFontViewGroup @JvmOverloads constructor(
         //         break;
         // }
         val fileName = "Mobilo/$letter.json"
-        LottieCompositionFactory.fromAsset(context, fileName)
-            .addListener { addComposition(it) }
+        /*LottieCompositionFactory.fromAsset(context, fileName)
+            .addListener { addComposition(it) }*/
 
         return true
     }
@@ -194,16 +217,36 @@ class LottieFontViewGroup @JvmOverloads constructor(
         return false
     }
 
-    private fun addComposition(composition: LottieComposition) {
+    private fun addComposition(composition: LottieComposition,pos:Int) {
         val lottieAnimationView = LottieAnimationView(context)
         lottieAnimationView.layoutParams = FrameLayout.LayoutParams(
-            212,
-            212
+            measuredWidth/4,
+            measuredWidth/4
 
         )
         lottieAnimationView.setComposition(composition)
+        lottieAnimationView.speed= 3.0F
         //lottieAnimationView.repeatCount=LottieDrawable.RESTART
         lottieAnimationView.playAnimation()
+        lottieAnimationView.addAnimatorListener(object :
+            Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator) {
+                Log.e("Animation:", "start")
+            }
+
+            override fun onAnimationEnd(animation: Animator) {
+                Log.e("Animation:", "end")
+                if(pos<sampleText.length-1)printX(pos +1)
+            }
+
+            override fun onAnimationCancel(animation: Animator) {
+                Log.e("Animation:", "cancel")
+            }
+
+            override fun onAnimationRepeat(animation: Animator) {
+                Log.e("Animation:", "repeat")
+            }
+        })
         val index = indexOfChild(cursorView)
         addView(lottieAnimationView, index)
     }
