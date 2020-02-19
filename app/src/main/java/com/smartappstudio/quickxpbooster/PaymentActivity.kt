@@ -1,8 +1,9 @@
 package com.smartappstudio.quickxpbooster
 
 import android.animation.Animator
+import android.content.ActivityNotFoundException
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -71,6 +72,42 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
         signIn()
         setContentView(R.layout.activity_payment)
         unlockStatus.visibility = View.INVISIBLE
+
+        achieve.setOnClickListener {
+            showAchievements()
+        }
+
+        rate.setOnClickListener {
+            Toast.makeText(
+                this,
+                "Give 5-star Rating \n& Check your Achievement",
+                Toast.LENGTH_SHORT
+            ).show()
+            val appPackageName = packageName // getPackageName() from Context or Activity object
+            try {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("market://details?id=$appPackageName")
+                    )
+                )
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                    .unlock(getString(R.string.achievement_level_19))
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                    .unlock(getString(R.string.achievement_level_20))
+            } catch (anfe: ActivityNotFoundException) {
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")
+                    )
+                )
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                    .unlock(getString(R.string.achievement_level_19))
+                Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+                    .unlock(getString(R.string.achievement_level_20))
+            }
+        }
 
     }
 
@@ -159,13 +196,14 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
                 }
             })
             trophy.visibility = View.VISIBLE
-            trophy.repeatCount = 10
+            trophy.repeatCount = 18
             trophy.playAnimation()
             trophy.addAnimatorListener(object :
                 Animator.AnimatorListener {
                 var i = 1
                 override fun onAnimationStart(animation: Animator) {
                     Log.e("Animation:", "start")
+                    unlockAchievements()
                     unlockStatus.visibility = View.VISIBLE
                     unlockStatus.text = "Unlocking achievemnet " + i
                     i++
@@ -185,6 +223,7 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
 
                 override fun onAnimationRepeat(animation: Animator) {
                     Log.e("Animation:", "repeat")
+                    unlockAchievements()
                     unlockStatus.text = "Unlocking achievemnet " + i
                     i++
                 }
@@ -302,9 +341,6 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
                 // Google Sign In failed, update UI appropriately
                 Log.w("TAG", "AfterPayment-Google sign in failed", e)
                 startActivity(Intent(this, MainActivity::class.java))
-                //signInButton!!.loadingFailed()
-                // [START_EXCLUDE]
-                //updateUI(null)
                 // [END_EXCLUDE]
             }
         }
@@ -330,11 +366,10 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
                     //signInButton!!.loadingFailed()
                     // If sign in fails, display a message to the user.
                     Log.w("TAG", "AfterPaymentsignInWithCredential:failure", task.exception)
-                    Toast.makeText(this, "Google SignIn Failed!", Toast.LENGTH_LONG)
+                    Toast.makeText(this, "Google SignIn Failed!", Toast.LENGTH_LONG).show()
                     startActivity(Intent(this, MainActivity::class.java))
                     //updateUI(null)
                 }
-
                 // [START_EXCLUDE]
                 hideProgressDialog()
                 // [END_EXCLUDE]
@@ -342,8 +377,54 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
     }
     // [END auth_with_google]
 
+    private fun showAchievements() {
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .achievementsIntent
+            .addOnSuccessListener { intent -> startActivityForResult(intent, RC_ACHIEVEMENT_UI) }
+    }
+
+    private fun unlockAchievements() {
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_1))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_2))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_3))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_4))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_5))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_6))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_7))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_8))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_9))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_10))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_11))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_12))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_13))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_14))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_15))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_16))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_17))
+        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
+            .unlock(getString(R.string.achievement_level_18))
+    }
+
     override fun onBackPressed(){
         signOut()
+        Toast.makeText(this, "You have been signed out!!", Toast.LENGTH_LONG).show()
         startActivity(Intent(this, MainActivity::class.java))
     }
 }
