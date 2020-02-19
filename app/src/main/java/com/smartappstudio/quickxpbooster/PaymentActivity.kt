@@ -330,8 +330,8 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
                     //signInButton!!.loadingFailed()
                     // If sign in fails, display a message to the user.
                     Log.w("TAG", "AfterPaymentsignInWithCredential:failure", task.exception)
-                    startActivity(Intent(this, MainActivity::class.java))
                     Toast.makeText(this, "Google SignIn Failed!", Toast.LENGTH_LONG)
+                    startActivity(Intent(this, MainActivity::class.java))
                     //updateUI(null)
                 }
 
@@ -341,4 +341,9 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
             }
     }
     // [END auth_with_google]
+
+    override fun onBackPressed(){
+        signOut()
+        startActivity(Intent(this, MainActivity::class.java))
+    }
 }
