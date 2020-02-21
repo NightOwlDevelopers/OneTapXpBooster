@@ -29,8 +29,6 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
     private lateinit var mFirebaseRemoteConfig: FirebaseRemoteConfig
     // [START declare_auth]
     private lateinit var auth: FirebaseAuth
-    // [END declare_auth]
-    protected val RC_LEADERBOARD_UI = 9004
     private val RC_ACHIEVEMENT_UI = 9003
 
     private val TAG = "GoogleActivity"
@@ -360,8 +358,12 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("TAG", "AfterPayment-signInWithCredential:success")
-                    val user = auth.currentUser?.displayName
-                    welcomeText.text = "Welcome " + user + " !"
+
+                    var user = auth.currentUser?.displayName
+                    var firstname= user!!.split(" ").first()
+                    if(firstname!=null) {
+                        welcomeText.text = "Welcome\n$firstname !"
+                    }
                 } else {
                     //signInButton!!.loadingFailed()
                     // If sign in fails, display a message to the user.
@@ -423,8 +425,10 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
     }
 
     override fun onBackPressed(){
-        signOut()
+        //signOut()
         Toast.makeText(this, "You have been signed out!!", Toast.LENGTH_LONG).show()
-        startActivity(Intent(this, MainActivity::class.java))
+        //startActivity(Intent(this, MainActivity::class.java))
+        finishAffinity()
+        finish()
     }
 }
