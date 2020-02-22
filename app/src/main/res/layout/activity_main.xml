@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.smartappstudio.quickxpbooster.LottieFontViewGroup
+    <com.smartappstudio.quickxpboost.LottieFontViewGroup
         android:id="@+id/fontView"
         android:layout_width="300dp"
         android:layout_height="150dp"

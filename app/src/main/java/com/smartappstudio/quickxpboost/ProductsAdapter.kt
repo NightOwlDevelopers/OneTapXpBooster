@@ -1,4 +1,4 @@
-package com.smartappstudio.quickxpbooster
+package com.smartappstudio.quickxpboost
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

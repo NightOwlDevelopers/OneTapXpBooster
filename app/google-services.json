@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:281571886559:android:586c4a9d4e634b28e6706a",
+        "android_client_info": {
+          "package_name": "com.smartappstudio.quickxpboost"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "281571886559-pimam9jrj32gj14bcqbca8q9608fd543.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwVOH7kTyxx7ysg23KN-egLBScP2OX1IY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "281571886559-pimam9jrj32gj14bcqbca8q9608fd543.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:281571886559:android:5eb8c0434ee1501be6706a",
         "android_client_info": {
           "package_name": "com.smartappstudio.quickxpbooster"

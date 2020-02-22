@@ -1,4 +1,4 @@
-package com.smartappstudio.quickxpbooster
+package com.smartappstudio.quickxpboost
 
 import android.animation.Animator
 import android.content.ActivityNotFoundException

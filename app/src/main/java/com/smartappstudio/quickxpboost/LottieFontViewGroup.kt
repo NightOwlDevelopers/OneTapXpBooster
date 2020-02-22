@@ -1,4 +1,4 @@
-package com.smartappstudio.quickxpbooster
+package com.smartappstudio.quickxpboost
 
 import android.animation.Animator
 import android.content.Context
@@ -17,7 +17,6 @@ import com.airbnb.lottie.LottieComposition
 import com.airbnb.lottie.LottieCompositionFactory
 import com.airbnb.lottie.LottieDrawable
 import java.util.*
-import kotlin.concurrent.thread
 
 class LottieFontViewGroup @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
