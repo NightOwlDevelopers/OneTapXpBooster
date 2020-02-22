@@ -362,7 +362,8 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
                     var user = auth.currentUser?.displayName
                     var firstname= user!!.split(" ").first()
                     if(firstname!=null) {
-                        welcomeText.text = "Welcome\n$firstname !"
+                        //welcomeText.text = "Welcome\n$firstname !"
+                        welcomeText.text = "Welcome $firstname !"
                     }
                 } else {
                     //signInButton!!.loadingFailed()
@@ -425,10 +426,10 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
     }
 
     override fun onBackPressed(){
-        //signOut()
+        signOut()
         Toast.makeText(this, "You have been signed out!!", Toast.LENGTH_LONG).show()
-        //startActivity(Intent(this, MainActivity::class.java))
-        finishAffinity()
-        finish()
+        startActivity(Intent(this, MainActivity::class.java))
+        /*finishAffinity()
+        finish()*/
     }
 }

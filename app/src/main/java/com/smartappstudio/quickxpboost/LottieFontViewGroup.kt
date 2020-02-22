@@ -25,25 +25,26 @@ class LottieFontViewGroup @JvmOverloads constructor(
 
     private val cursorView: LottieAnimationView by lazy { LottieAnimationView(context) }
 
-    val sampleText="QUICKBOOST"
+    val sampleText="QUICK BOOST"
 
     var pos=0
 
 
     init {
-        isFocusableInTouchMode = true
+        /*isFocusableInTouchMode = true
         LottieCompositionFactory.fromAsset(context, "Mobilo/BlinkingCursor.json")
             .addListener {
                 cursorView.layoutParams = FrameLayout.LayoutParams(
-                    /*ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT*/
+                    *//*ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT*//*
                 measuredWidth/4,measuredWidth/4
                 )
                 cursorView.setComposition(it)
                 cursorView.repeatCount = LottieDrawable.INFINITE
                 cursorView.playAnimation()
                 addView(cursorView)
-            }
+
+            }*/
         /*val sampleText="Q"
         val sampleTextIterator = sampleText.iterator()
         while (sampleTextIterator.hasNext()) {
@@ -59,25 +60,30 @@ class LottieFontViewGroup @JvmOverloads constructor(
                         addComposition(it)
                     }
             }
-            //Thread.sleep(200,10)
+            Thread.sleep(200,10)
         }*/
+
         val letter=sampleText[0]
         val fileName = "Mobilo/$letter.json"
         LottieCompositionFactory.fromAsset(context, fileName)
             .addListener {
                 addComposition(it,pos)
             }
-
-
     }
 
     private fun printX(pos:Int) {
-        val letter=sampleText[pos]
-        val fileName = "Mobilo/$letter.json"
-        LottieCompositionFactory.fromAsset(context, fileName)
-            .addListener {
-                addComposition(it,pos)
-            }
+        var letter=sampleText[pos]
+        if(letter.equals(' ')){
+            addSpace()
+            printX(pos+1)
+        }
+        else {
+            val fileName = "Mobilo/$letter.json"
+            LottieCompositionFactory.fromAsset(context, fileName)
+                .addListener {
+                    addComposition(it, pos)
+                }
+        }
     }
 
     private fun addSpace() {
@@ -139,11 +145,24 @@ class LottieFontViewGroup @JvmOverloads constructor(
                 if (view.tag != null && view.tag == "Space") {
                     continue
                 }
-                currentX = paddingLeft
-                currentY += view.measuredHeight
+                /*if(view.tag == "Space"){
+                    currentX = paddingLeft+100
+                    currentY += view.measuredHeight
+                    continue
+                }*/
+                else{
+                    currentX = paddingLeft
+                    currentY += view.measuredHeight
+                }
+            }
+            else{
+                if(view.tag == "Space"){
+                    System.err.println("SPACEX")
+                    currentX = paddingLeft+250
+                }
             }
             view.layout(
-                currentX, currentY, currentX + view.measuredWidth,
+                currentX, currentY, currentX+50 + view.measuredWidth,
                 currentY + view.measuredHeight
             )
             currentX += view.measuredWidth-50
@@ -257,8 +276,10 @@ class LottieFontViewGroup @JvmOverloads constructor(
     private fun createSpaceView(): View {
         val spaceView = View(context)
         spaceView.layoutParams = FrameLayout.LayoutParams(
-            resources.getDimensionPixelSize(R.dimen.font_space_width),
-            ViewGroup.LayoutParams.WRAP_CONTENT
+            /*resources.getDimensionPixelSize(R.dimen.font_space_width),*/
+            measuredWidth/2,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            1
         )
         spaceView.tag = "Space"
         return spaceView

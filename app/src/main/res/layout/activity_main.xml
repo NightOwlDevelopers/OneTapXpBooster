@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.smartappstudio.quickxpboost.LottieFontViewGroup
-        android:id="@+id/fontView"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-
-        android:layout_marginTop="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
         android:layout_width="300dp"
@@ -44,4 +33,15 @@
         app:lottie_autoPlay="true"
         app:lottie_fileName="lottiefiles/2160-get-started-button.json"
         app:lottie_loop="true" />
+
+    <com.smartappstudio.quickxpboost.LottieFontViewGroup
+        android:id="@+id/fontView"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
