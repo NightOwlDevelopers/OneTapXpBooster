@@ -1,14 +1,18 @@
 package com.smartappstudio.quickxpboost
 
 import android.animation.Animator
+import android.app.ProgressDialog
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.annotation.VisibleForTesting
 import com.android.billingclient.api.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -22,7 +26,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import kotlinx.android.synthetic.main.activity_payment.*
 
-class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
+class PaymentActivity : FirebaseConfig(), PurchasesUpdatedListener {
 
     private lateinit var billingClient: BillingClient
     private lateinit var productsAdapter: ProductsAdapter
@@ -41,15 +45,7 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
         super.onCreate(savedInstanceState)
         setupBillingClient()
         //region RemoteConfig
-        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
-        //Enable Debug mode for frequent fetches
-        val configSettings = FirebaseRemoteConfigSettings.Builder()
-            .setDeveloperModeEnabled(BuildConfig.DEBUG)
-            .build()
-        mFirebaseRemoteConfig.setConfigSettings(configSettings)
-        mFirebaseRemoteConfig.setDefaults(R.xml.firebasedefaults)
-        //getRemoteConfigValues()
-        //endregion
+        mFirebaseRemoteConfig=getRemoteConfigValues()
 
 
         // [START config_signin]
@@ -71,6 +67,8 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
         setContentView(R.layout.activity_payment)
         unlockStatus.visibility = View.INVISIBLE
 
+        rateText.text=mFirebaseRemoteConfig.getString("rate_us")
+
         achieve.setOnClickListener {
             showAchievements()
         }
@@ -78,7 +76,7 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
         rate.setOnClickListener {
             Toast.makeText(
                 this,
-                "Give 5-star Rating \n& Check your Achievement",
+                mFirebaseRemoteConfig.getString("rate_us"),
                 Toast.LENGTH_SHORT
             ).show()
             val appPackageName = packageName // getPackageName() from Context or Activity object
@@ -431,5 +429,52 @@ class PaymentActivity : BaseActivity(), PurchasesUpdatedListener {
         startActivity(Intent(this, MainActivity::class.java))
         /*finishAffinity()
         finish()*/
+    }
+
+    @VisibleForTesting
+    val progressDialog by lazy {
+        ProgressDialog(this)
+    }
+
+    fun showProgressDialog() {
+        progressDialog.setMessage(getString(R.string.loading))
+        progressDialog.isIndeterminate = true
+        //set progress loading animation
+        //progressDialog.show()
+    }
+
+    fun hideProgressDialog() {
+        if (progressDialog.isShowing) {
+            progressDialog.dismiss()
+        }
+    }
+
+    fun hideKeyboard(view: View) {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    public override fun onStop() {
+        super.onStop()
+        hideProgressDialog()
+    }
+
+    public override fun onPause() {
+        super.onPause()
+        if (loader != null) {
+            loader.visibility = View.VISIBLE
+            products.visibility = View.INVISIBLE
+            buttonTap.visibility = View.INVISIBLE
+        }
+    }
+
+    public override fun onResume() {
+        super.onResume()
+        if (loader != null) {
+            loader.visibility = View.INVISIBLE
+            products.visibility = View.VISIBLE
+            buttonTap.playAnimation()
+            buttonTap.visibility = View.VISIBLE
+        }
     }
 }

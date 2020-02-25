@@ -10,53 +10,23 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
-import kotlinx.android.synthetic.main.activity_test.*
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : FirebaseConfig() {
     private lateinit var mFirebaseRemoteConfig: FirebaseRemoteConfig
     private var VersionCode = "versionCode"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        animation_view2.setOnClickListener {
+        get_started.setOnClickListener {
             startActivity(Intent(this, PaymentActivity::class.java))
         }
-
-        //region Firebase Config Setup
-        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
-        val configSettings = FirebaseRemoteConfigSettings.Builder()
-            .setDeveloperModeEnabled(BuildConfig.DEBUG)
-            .build()
-        mFirebaseRemoteConfig.setConfigSettings(configSettings)
-        mFirebaseRemoteConfig.setDefaults(R.xml.firebasedefaults)
-        getRemoteConfigValues()
         //endregion
-
+        mFirebaseRemoteConfig=getRemoteConfigValues()
+        setRemoteConfigValues()
 
     }
 
-    //region Firebase Config Method 1
-    private fun getRemoteConfigValues() {
-
-        var cacheExpiration: Long = 7200//2 hours
-
-        // Allow fetch on every call for now - remove/comment on production builds
-        if (mFirebaseRemoteConfig.info.configSettings.isDeveloperModeEnabled) {
-            cacheExpiration = 0
-        }
-
-        mFirebaseRemoteConfig.fetch(cacheExpiration)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    //   Toast.makeText(this, "Fetch Succeeded", Toast.LENGTH_SHORT).show()
-                    mFirebaseRemoteConfig.activateFetched()
-                } else {
-                    //   Toast.makeText(this, "Fetch Failed", Toast.LENGTH_SHORT).show()
-                }
-
-                setRemoteConfigValues()
-            }
-    }
 
     //endregion
 
@@ -70,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         val Alert_No_btn = mFirebaseRemoteConfig.getString("Alert_No_Btn")
         val Rate_Text = mFirebaseRemoteConfig.getString("rate_us")
         //endregion
+        System.out.println(Rate_Text)
         if (remoteCodeVersion > 0) {
             val versionCode = BuildConfig.VERSION_CODE
             if (remoteCodeVersion > versionCode) {
@@ -126,7 +97,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
 
         super.onStart()
-
+        mFirebaseRemoteConfig=getRemoteConfigValues()
         //region Startup Notification Firebase Config
         val remoteCodeVersion = mFirebaseRemoteConfig.getLong(VersionCode)
         val versionCode = BuildConfig.VERSION_CODE

@@ -6,6 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/fontView"
+        android:layout_width="353dp"
+        android:layout_height="178dp"
+
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/audiowide"
+        android:gravity="center"
+        android:lineSpacingExtra="10sp"
+        android:text="Quick XP \nBooster"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorAnimationBlue"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
         android:layout_width="300dp"
@@ -21,27 +42,34 @@
         app:lottie_fileName="lottiefiles/7655-rocket.json"
         app:lottie_loop="true" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation_view2"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+    <Button
+        android:id="@+id/get_started"
+        android:layout_width="213dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="40dp"
+        android:background="@color/colorAccent"
+        android:fontFamily="@font/audiowide"
+        android:text="Get Started"
+        android:textAllCaps="false"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toStartOf="@+id/animation_view"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toEndOf="@+id/animation_view" />
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="273dp"
+        android:layout_height="60dp"
+        android:autoLink="web"
+        android:gravity="center"
+        android:text="By using this app,\nyou are agreeing our Terms &amp; Conditions."
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="lottiefiles/2160-get-started-button.json"
-        app:lottie_loop="true" />
-
-    <com.smartappstudio.quickxpboost.LottieFontViewGroup
-        android:id="@+id/fontView"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-
-        android:layout_marginTop="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
