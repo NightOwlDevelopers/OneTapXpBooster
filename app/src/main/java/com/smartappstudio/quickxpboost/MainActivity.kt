@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         val AlertMessage = mFirebaseRemoteConfig.getString("Alert_Message")
         val Alert_Ok_btn = mFirebaseRemoteConfig.getString("Alert_Ok_Btn")
         val Alert_No_btn = mFirebaseRemoteConfig.getString("Alert_No_Btn")
+        val Rate_Text = mFirebaseRemoteConfig.getString("rate_us")
         //endregion
         if (remoteCodeVersion > 0) {
             val versionCode = BuildConfig.VERSION_CODE
