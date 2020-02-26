@@ -1,4 +1,4 @@
-package com.smartappstudio.quickxpboost
+package com.smartappstudio.quickboost
 
 import android.animation.Animator
 import android.app.ProgressDialog
@@ -23,7 +23,6 @@ import com.google.android.gms.games.Games
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import kotlinx.android.synthetic.main.activity_payment.*
 
 class PaymentActivity : FirebaseConfig(), PurchasesUpdatedListener {
@@ -45,7 +44,7 @@ class PaymentActivity : FirebaseConfig(), PurchasesUpdatedListener {
         super.onCreate(savedInstanceState)
         setupBillingClient()
         //region RemoteConfig
-        mFirebaseRemoteConfig=getRemoteConfigValues()
+        mFirebaseRemoteConfig = getRemoteConfigValues()
 
 
         // [START config_signin]
@@ -67,7 +66,7 @@ class PaymentActivity : FirebaseConfig(), PurchasesUpdatedListener {
         setContentView(R.layout.activity_payment)
         unlockStatus.visibility = View.INVISIBLE
 
-        rateText.text=mFirebaseRemoteConfig.getString("rate_us")
+        rateText.text = mFirebaseRemoteConfig.getString("rate_us")
 
         achieve.setOnClickListener {
             showAchievements()
@@ -129,6 +128,7 @@ class PaymentActivity : FirebaseConfig(), PurchasesUpdatedListener {
             }
         })
     }
+
     fun onLoadProductsClicked() {
         if (billingClient.isReady) {
             val params = SkuDetailsParams
@@ -148,6 +148,7 @@ class PaymentActivity : FirebaseConfig(), PurchasesUpdatedListener {
             println("Billing Client not ready")
         }
     }
+
     private fun initProductAdapter(skuDetailsList: List<SkuDetails>) {
         productsAdapter = ProductsAdapter(skuDetailsList) {
             val billingFlowParams = BillingFlowParams
@@ -158,6 +159,7 @@ class PaymentActivity : FirebaseConfig(), PurchasesUpdatedListener {
         }
         products.adapter = productsAdapter
     }
+
     override fun onPurchasesUpdated(responseCode: Int, purchases: MutableList<Purchase>?) {
         println("onPurchasesUpdated: $responseCode")
         allowMultiplePurchases(purchases)
@@ -253,6 +255,7 @@ class PaymentActivity : FirebaseConfig(), PurchasesUpdatedListener {
         }
 
     }
+
     private fun allowMultiplePurchases(purchases: MutableList<Purchase>?) {
         val purchase = purchases?.first()
         if (purchase != null) {
@@ -358,8 +361,8 @@ class PaymentActivity : FirebaseConfig(), PurchasesUpdatedListener {
                     Log.d("TAG", "AfterPayment-signInWithCredential:success")
 
                     var user = auth.currentUser?.displayName
-                    var firstname= user!!.split(" ").first()
-                    if(firstname!=null) {
+                    var firstname = user!!.split(" ").first()
+                    if (firstname != null) {
                         //welcomeText.text = "Welcome\n$firstname !"
                         welcomeText.text = "Welcome $firstname !"
                     }
@@ -423,7 +426,7 @@ class PaymentActivity : FirebaseConfig(), PurchasesUpdatedListener {
             .unlock(getString(R.string.achievement_level_18))
     }
 
-    override fun onBackPressed(){
+    override fun onBackPressed() {
         signOut()
         Toast.makeText(this, "You have been signed out!!", Toast.LENGTH_LONG).show()
         startActivity(Intent(this, MainActivity::class.java))

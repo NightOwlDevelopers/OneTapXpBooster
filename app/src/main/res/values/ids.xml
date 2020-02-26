@@ -7,7 +7,6 @@ Save this file as res/values/games-ids.xml in your project.
     <!-- app_id -->
     <string name="app_id" translatable="false">281571886559</string>
     <!-- package_name -->
-    <string name="package_name" translatable="false">com.smartappstudio.quickxpbooster</string>
     <!-- achievement Level 1 -->
     <string name="achievement_level_1" translatable="false">CgkI34v495gIEAIQAQ</string>
     <!-- achievement Level 2 -->
@@ -49,5 +48,4 @@ Save this file as res/values/games-ids.xml in your project.
     <!-- achievement Level 20 -->
     <string name="achievement_level_20" translatable="false">CgkI34v495gIEAIQFA</string>
     <!-- leaderboard Leaderboard -->
-    <string name="leaderboard_leaderboard" translatable="false">CgkI34v495gIEAIQFQ</string>
 </resources>

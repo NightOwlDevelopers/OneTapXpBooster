@@ -8,12 +8,73 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:281571886559:android:5a340627127bad1ae6706a",
+        "android_client_info": {
+          "package_name": "com.smartappstudio.quickboost"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "281571886559-gn2loujm3ef0pf5ab7ugi35oq37iln3i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smartappstudio.quickboost",
+            "certificate_hash": "75b4fd31c3293ed2e33964f9470b137090ea4072"
+          }
+        },
+        {
+          "client_id": "281571886559-pimam9jrj32gj14bcqbca8q9608fd543.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwVOH7kTyxx7ysg23KN-egLBScP2OX1IY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "281571886559-pimam9jrj32gj14bcqbca8q9608fd543.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:281571886559:android:586c4a9d4e634b28e6706a",
         "android_client_info": {
           "package_name": "com.smartappstudio.quickxpboost"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "281571886559-pjiv5adrkftnoahsvtjss9pvikhraevb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smartappstudio.quickxpboost",
+            "certificate_hash": "5180dce75019332cf97457e95e680ccec0c81fd8"
+          }
+        },
+        {
+          "client_id": "281571886559-rarfsg6tdvmprui7ug54bij84bkaeesn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smartappstudio.quickxpboost",
+            "certificate_hash": "75b4fd31c3293ed2e33964f9470b137090ea4072"
+          }
+        },
+        {
+          "client_id": "281571886559-9evfftcdgvfb8nnpm2tgi6phds3ul6ql.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smartappstudio.quickxpboost",
+            "certificate_hash": "13d839a53d34eb5c3b6b81af86d0e3fd39d48513"
+          }
+        },
         {
           "client_id": "281571886559-pimam9jrj32gj14bcqbca8q9608fd543.apps.googleusercontent.com",
           "client_type": 3
@@ -43,6 +104,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "281571886559-82n1dq50mbkj4aohed180015h8ote1gp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smartappstudio.quickxpbooster",
+            "certificate_hash": "603c8938265453ddc747c06c18855531d13e8030"
+          }
+        },
         {
           "client_id": "281571886559-biqu6htvj3jeqirosj9ub0rtn6ivbh0c.apps.googleusercontent.com",
           "client_type": 1,

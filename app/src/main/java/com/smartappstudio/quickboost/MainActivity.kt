@@ -1,4 +1,4 @@
-package com.smartappstudio.quickxpboost
+package com.smartappstudio.quickboost
 
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException
@@ -6,15 +6,14 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
+import android.widget.ImageView
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : FirebaseConfig() {
     private lateinit var mFirebaseRemoteConfig: FirebaseRemoteConfig
     private var VersionCode = "versionCode"
+    private lateinit var terms: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,8 +21,12 @@ class MainActivity : FirebaseConfig() {
             startActivity(Intent(this, PaymentActivity::class.java))
         }
         //endregion
-        mFirebaseRemoteConfig=getRemoteConfigValues()
+        mFirebaseRemoteConfig = getRemoteConfigValues()
         setRemoteConfigValues()
+        terms = findViewById(R.id.webViewTerms)
+        terms.setOnClickListener {
+            startActivity(Intent(this, TermsAndConditionWebView::class.java))
+        }
 
     }
 
@@ -97,7 +100,7 @@ class MainActivity : FirebaseConfig() {
     override fun onStart() {
 
         super.onStart()
-        mFirebaseRemoteConfig=getRemoteConfigValues()
+        mFirebaseRemoteConfig = getRemoteConfigValues()
         //region Startup Notification Firebase Config
         val remoteCodeVersion = mFirebaseRemoteConfig.getLong(VersionCode)
         val versionCode = BuildConfig.VERSION_CODE
@@ -108,5 +111,11 @@ class MainActivity : FirebaseConfig() {
         //endregion
     }
     //endregion
+
+    override fun onBackPressed() {
+        finishAffinity()
+        finish()
+    }
+
 }
 

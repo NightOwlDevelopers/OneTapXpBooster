@@ -1,4 +1,4 @@
-package com.smartappstudio.quickxpboost
+package com.smartappstudio.quickboost
 
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
@@ -6,10 +6,10 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 
 open class FirebaseConfig : AppCompatActivity() {
 
-    var firebaseLogged=false
+    var firebaseLogged = false
     private lateinit var mFirebaseRemoteConfig: FirebaseRemoteConfig
 
-    fun firebaseRemoteConfig(){
+    fun firebaseRemoteConfig() {
         //region Firebase Config Setup
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
         val configSettings = FirebaseRemoteConfigSettings.Builder()
@@ -22,7 +22,7 @@ open class FirebaseConfig : AppCompatActivity() {
     //region Firebase Config Method 1
     internal fun getRemoteConfigValues(): FirebaseRemoteConfig {
 
-        if(!firebaseLogged){
+        if (!firebaseLogged) {
             firebaseRemoteConfig()
         }
         var cacheExpiration: Long = 7200//2 hours
@@ -37,7 +37,7 @@ open class FirebaseConfig : AppCompatActivity() {
                 if (task.isSuccessful) {
                     //   Toast.makeText(this, "Fetch Succeeded", Toast.LENGTH_SHORT).show()
                     mFirebaseRemoteConfig.activateFetched()
-                    firebaseLogged=true
+                    firebaseLogged = true
                 } else {
                     //   Toast.makeText(this, "Fetch Failed", Toast.LENGTH_SHORT).show()
                 }

@@ -1,4 +1,4 @@
-package com.smartappstudio.quickxpboost
+package com.smartappstudio.quickboost
 
 import android.animation.Animator
 import android.content.Context
@@ -15,7 +15,6 @@ import android.widget.FrameLayout
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieComposition
 import com.airbnb.lottie.LottieCompositionFactory
-import com.airbnb.lottie.LottieDrawable
 import java.util.*
 
 class LottieFontViewGroup @JvmOverloads constructor(
@@ -25,9 +24,9 @@ class LottieFontViewGroup @JvmOverloads constructor(
 
     private val cursorView: LottieAnimationView by lazy { LottieAnimationView(context) }
 
-    val sampleText="QUICK BOOST"
+    val sampleText = "QUICK BOOST"
 
-    var pos=0
+    var pos = 0
 
 
     init {
@@ -63,21 +62,20 @@ class LottieFontViewGroup @JvmOverloads constructor(
             Thread.sleep(200,10)
         }*/
 
-        val letter=sampleText[0]
+        val letter = sampleText[0]
         val fileName = "Mobilo/$letter.json"
         LottieCompositionFactory.fromAsset(context, fileName)
             .addListener {
-                addComposition(it,pos)
+                addComposition(it, pos)
             }
     }
 
-    private fun printX(pos:Int) {
-        var letter=sampleText[pos]
-        if(letter.equals(' ')){
+    private fun printX(pos: Int) {
+        var letter = sampleText[pos]
+        if (letter.equals(' ')) {
             addSpace()
-            printX(pos+1)
-        }
-        else {
+            printX(pos + 1)
+        } else {
             val fileName = "Mobilo/$letter.json"
             LottieCompositionFactory.fromAsset(context, fileName)
                 .addListener {
@@ -150,22 +148,21 @@ class LottieFontViewGroup @JvmOverloads constructor(
                     currentY += view.measuredHeight
                     continue
                 }*/
-                else{
+                else {
                     currentX = paddingLeft
                     currentY += view.measuredHeight
                 }
-            }
-            else{
-                if(view.tag == "Space"){
+            } else {
+                if (view.tag == "Space") {
                     System.err.println("SPACEX")
-                    currentX = paddingLeft+250
+                    currentX = paddingLeft + 250
                 }
             }
             view.layout(
-                currentX, currentY, currentX+50 + view.measuredWidth,
+                currentX, currentY, currentX + 50 + view.measuredWidth,
                 currentY + view.measuredHeight
             )
-            currentX += view.measuredWidth-50
+            currentX += view.measuredWidth - 50
         }
     }
 
@@ -235,15 +232,15 @@ class LottieFontViewGroup @JvmOverloads constructor(
         return false
     }
 
-    private fun addComposition(composition: LottieComposition,pos:Int) {
+    private fun addComposition(composition: LottieComposition, pos: Int) {
         val lottieAnimationView = LottieAnimationView(context)
         lottieAnimationView.layoutParams = FrameLayout.LayoutParams(
-            measuredWidth/4,
-            measuredWidth/4
+            measuredWidth / 4,
+            measuredWidth / 4
 
         )
         lottieAnimationView.setComposition(composition)
-        lottieAnimationView.speed= 3.0F
+        lottieAnimationView.speed = 3.0F
         //lottieAnimationView.repeatCount=LottieDrawable.RESTART
         lottieAnimationView.playAnimation()
         lottieAnimationView.addAnimatorListener(object :
@@ -254,7 +251,7 @@ class LottieFontViewGroup @JvmOverloads constructor(
 
             override fun onAnimationEnd(animation: Animator) {
                 Log.e("Animation:", "end")
-                if(pos<sampleText.length-1)printX(pos +1)
+                if (pos < sampleText.length - 1) printX(pos + 1)
             }
 
             override fun onAnimationCancel(animation: Animator) {
@@ -277,7 +274,7 @@ class LottieFontViewGroup @JvmOverloads constructor(
         val spaceView = View(context)
         spaceView.layoutParams = FrameLayout.LayoutParams(
             /*resources.getDimensionPixelSize(R.dimen.font_space_width),*/
-            measuredWidth/2,
+            measuredWidth / 2,
             ViewGroup.LayoutParams.WRAP_CONTENT,
             1
         )
