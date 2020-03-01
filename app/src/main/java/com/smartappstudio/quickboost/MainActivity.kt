@@ -42,9 +42,10 @@ class MainActivity : FirebaseConfig() {
         val Alert_Ok_btn = mFirebaseRemoteConfig.getString("Alert_Ok_Btn")
         val Alert_No_btn = mFirebaseRemoteConfig.getString("Alert_No_Btn")
         val Rate_Text = mFirebaseRemoteConfig.getString("rate_us")
+        val versionCode = BuildConfig.VERSION_CODE
         //endregion
-        System.out.println(Rate_Text)
-        if (remoteCodeVersion > 0) {
+        System.out.println(versionCode)
+        if (remoteCodeVersion > versionCode) {
             val versionCode = BuildConfig.VERSION_CODE
             if (remoteCodeVersion > versionCode) {
                 val dialogBuilder = AlertDialog.Builder(this)
