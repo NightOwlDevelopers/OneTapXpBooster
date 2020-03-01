@@ -1,4 +1,4 @@
-package com.smartappstudio.quickboost
+package com.smartappstudio.quickboost2
 
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException

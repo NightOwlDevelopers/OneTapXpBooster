@@ -1,4 +1,4 @@
-package com.smartappstudio.quickboost
+package com.smartappstudio.quickboost2
 
 import android.animation.Animator
 import android.app.ProgressDialog
