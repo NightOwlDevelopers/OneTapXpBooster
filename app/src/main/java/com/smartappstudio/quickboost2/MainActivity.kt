@@ -6,6 +6,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.method.TextKeyListener.clear
 import android.widget.ImageView
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import kotlinx.android.synthetic.main.activity_main.*
@@ -116,6 +117,20 @@ class MainActivity : FirebaseConfig() {
     override fun onBackPressed() {
         finishAffinity()
         finish()
+    }
+
+    override fun onResume() {
+
+
+        mFirebaseRemoteConfig = getRemoteConfigValues()
+        //region Startup Notification Firebase Config
+        val remoteCodeVersion = mFirebaseRemoteConfig.getLong(VersionCode)
+        val versionCode = BuildConfig.VERSION_CODE
+
+        if (remoteCodeVersion > versionCode) {
+            getRemoteConfigValues()
+        }
+        super.onResume()
     }
 
 }

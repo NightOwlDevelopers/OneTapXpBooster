@@ -4,5 +4,5 @@
     <color name="colorPrimaryDark">#f1f1f1</color>
     <color name="colorAccent">#05166C</color>
     <color name="colorAnimationBlue">#05166C</color>
-    <color name="colorXpBoostText">#4C4C4C</color>
+    <color name="colorXpBoostText">#000000</color>
 </resources>
