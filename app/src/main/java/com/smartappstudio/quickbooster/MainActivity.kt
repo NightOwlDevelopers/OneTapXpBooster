@@ -1,4 +1,4 @@
-package com.smartappstudio.quickboost2
+package com.smartappstudio.quickbooster
 
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException
@@ -6,7 +6,6 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.method.TextKeyListener.clear
 import android.widget.ImageView
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import kotlinx.android.synthetic.main.activity_main.*

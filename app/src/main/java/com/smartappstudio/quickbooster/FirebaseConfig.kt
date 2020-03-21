@@ -1,4 +1,4 @@
-package com.smartappstudio.quickboost2
+package com.smartappstudio.quickbooster
 
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig

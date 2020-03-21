@@ -1,4 +1,4 @@
-package com.smartappstudio.quickboost2
+package com.smartappstudio.quickbooster
 
 import org.junit.Test
 

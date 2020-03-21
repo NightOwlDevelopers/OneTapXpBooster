@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.smartappstudio.quickboost2">
+    package="com.smartappstudio.quickbooster">
 
     <dist:module dist:instant="true" />
 
@@ -18,9 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.smartappstudio.quickboost2.TermsAndConditionWebView"></activity>
-        <activity android:name="com.smartappstudio.quickboost2.PaymentActivity" />
-        <activity android:name="com.smartappstudio.quickboost2.MainActivity">
+        <activity android:name="com.smartappstudio.quickbooster.TermsAndConditionWebView"></activity>
+        <activity android:name="com.smartappstudio.quickbooster.PaymentActivity" />
+        <activity android:name="com.smartappstudio.quickbooster.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

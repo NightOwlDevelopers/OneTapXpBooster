@@ -1,42 +1,50 @@
 {
   "project_info": {
-    "project_number": "358475050135",
-    "firebase_url": "https://quick-xp-boost-2-17276480.firebaseio.com",
-    "project_id": "quick-xp-boost-2-17276480",
-    "storage_bucket": "quick-xp-boost-2-17276480.appspot.com"
+    "project_number": "281571886559",
+    "firebase_url": "https://quick-xp-booster-43821522.firebaseio.com",
+    "project_id": "quick-xp-booster-43821522",
+    "storage_bucket": "quick-xp-booster-43821522.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:358475050135:android:e7cb1ffe0f8d16907f8dd2",
+        "mobilesdk_app_id": "1:281571886559:android:a535cf38a363b4a5e6706a",
         "android_client_info": {
-          "package_name": "com.smartappstudio.quickboost2"
+          "package_name": "com.smartappstudio.quickbooster"
         }
       },
       "oauth_client": [
         {
-          "client_id": "358475050135-gpelk9c04erp9efj6h80hng7ktcb1gpa.apps.googleusercontent.com",
+          "client_id": "281571886559-thtmlrqfcf3jlc24ie8qkfd5d682j01i.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.smartappstudio.quickboost2",
+            "package_name": "com.smartappstudio.quickbooster",
+            "certificate_hash": "82bc6be3d21632a548d1e2629e0e9e6458892d22"
+          }
+        },
+        {
+          "client_id": "281571886559-geemd27v7aosa8os2jecfvatifertfan.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smartappstudio.quickbooster",
             "certificate_hash": "75b4fd31c3293ed2e33964f9470b137090ea4072"
           }
         },
         {
-          "client_id": "358475050135-p4tpr5eqe3prhcfqprik4pis03n9qv9i.apps.googleusercontent.com",
+          "client_id": "281571886559-pimam9jrj32gj14bcqbca8q9608fd543.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBw9qg3ZwAu5nfCGeSr-bwJwKWJk959lSM"
+          "current_key": "AIzaSyAwVOH7kTyxx7ysg23KN-egLBScP2OX1IY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "358475050135-p4tpr5eqe3prhcfqprik4pis03n9qv9i.apps.googleusercontent.com",
+              "client_id": "281571886559-pimam9jrj32gj14bcqbca8q9608fd543.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
