@@ -1,4 +1,4 @@
-package com.smartappstudio.quickbooster
+package com.nightowldevelopers.onetapxpboost
 
 import android.animation.Animator
 import android.content.Context

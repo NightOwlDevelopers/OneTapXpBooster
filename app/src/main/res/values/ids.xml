@@ -5,47 +5,39 @@ Save this file as res/values/games-ids.xml in your project.
 -->
 <resources>
     <!-- app_id -->
-    <string name="app_id" translatable="false">281571886559</string>
+    <string name="app_id" translatable="false">53286765302</string>
     <!-- package_name -->
+    <string name="package_name" translatable="false">com.nightowldevelopers.onetapxpboost</string>
     <!-- achievement Level 1 -->
-    <string name="achievement_level_1" translatable="false">CgkI34v495gIEAIQAQ</string>
+    <string name="achievement_level_1" translatable="false">CgkI9oWOwcYBEAIQAQ</string>
     <!-- achievement Level 2 -->
-    <string name="achievement_level_2" translatable="false">CgkI34v495gIEAIQAg</string>
+    <string name="achievement_level_2" translatable="false">CgkI9oWOwcYBEAIQAg</string>
     <!-- achievement Level 3 -->
-    <string name="achievement_level_3" translatable="false">CgkI34v495gIEAIQAw</string>
+    <string name="achievement_level_3" translatable="false">CgkI9oWOwcYBEAIQAw</string>
     <!-- achievement Level 4 -->
-    <string name="achievement_level_4" translatable="false">CgkI34v495gIEAIQBA</string>
+    <string name="achievement_level_4" translatable="false">CgkI9oWOwcYBEAIQBA</string>
     <!-- achievement Level 5 -->
-    <string name="achievement_level_5" translatable="false">CgkI34v495gIEAIQBQ</string>
-    <!-- achievement Level 6 -->
-    <string name="achievement_level_6" translatable="false">CgkI34v495gIEAIQBg</string>
-    <!-- achievement Level 7 -->
-    <string name="achievement_level_7" translatable="false">CgkI34v495gIEAIQBw</string>
+    <string name="achievement_level_5" translatable="false">CgkI9oWOwcYBEAIQBQ</string>
+    <!-- achievement Level 6 !! Follow us on Instagram and unlock Level 7 -->
+    <string name="achievement_level_6__follow_us_on_instagram_and_unlock_level_7" translatable="false">CgkI9oWOwcYBEAIQBg</string>
+    <!-- achievement Instagram Achievement -->
+    <string name="achievement_instagram_achievement" translatable="false">CgkI9oWOwcYBEAIQCA</string>
     <!-- achievement Level 8 -->
-    <string name="achievement_level_8" translatable="false">CgkI34v495gIEAIQCA</string>
-    <!-- achievement Level 9 -->
-    <string name="achievement_level_9" translatable="false">CgkI34v495gIEAIQCQ</string>
+    <string name="achievement_level_8" translatable="false">CgkI9oWOwcYBEAIQCQ</string>
+    <!-- achievement More Xp -->
+    <string name="achievement_more_xp" translatable="false">CgkI9oWOwcYBEAIQCg</string>
     <!-- achievement Level 10 -->
-    <string name="achievement_level_10" translatable="false">CgkI34v495gIEAIQCg</string>
+    <string name="achievement_level_10" translatable="false">CgkI9oWOwcYBEAIQEA</string>
     <!-- achievement Level 11 -->
-    <string name="achievement_level_11" translatable="false">CgkI34v495gIEAIQCw</string>
+    <string name="achievement_level_11" translatable="false">CgkI9oWOwcYBEAIQCw</string>
     <!-- achievement Level 12 -->
-    <string name="achievement_level_12" translatable="false">CgkI34v495gIEAIQDA</string>
+    <string name="achievement_level_12" translatable="false">CgkI9oWOwcYBEAIQDA</string>
     <!-- achievement Level 13 -->
-    <string name="achievement_level_13" translatable="false">CgkI34v495gIEAIQDQ</string>
+    <string name="achievement_level_13" translatable="false">CgkI9oWOwcYBEAIQDQ</string>
     <!-- achievement Level 14 -->
-    <string name="achievement_level_14" translatable="false">CgkI34v495gIEAIQDg</string>
-    <!-- achievement Level 15 -->
-    <string name="achievement_level_15" translatable="false">CgkI34v495gIEAIQDw</string>
-    <!-- achievement Level 16 -->
-    <string name="achievement_level_16" translatable="false">CgkI34v495gIEAIQEA</string>
-    <!-- achievement Level 17 -->
-    <string name="achievement_level_17" translatable="false">CgkI34v495gIEAIQEQ</string>
-    <!-- achievement Level 18 -->
-    <string name="achievement_level_18" translatable="false">CgkI34v495gIEAIQEg</string>
-    <!-- achievement Level 19 -->
-    <string name="achievement_level_19" translatable="false">CgkI34v495gIEAIQEw</string>
-    <!-- achievement Level 20 -->
-    <string name="achievement_level_20" translatable="false">CgkI34v495gIEAIQFA</string>
+    <string name="achievement_level_14" translatable="false">CgkI9oWOwcYBEAIQDg</string>
+    <!-- achievement Rate Achievement -->
+    <string name="achievement_rate_achievement" translatable="false">CgkI9oWOwcYBEAIQDw</string>
     <!-- leaderboard Leaderboard -->
+    <string name="leaderboard_leaderboard" translatable="false">CgkI9oWOwcYBEAIQBw</string>
 </resources>

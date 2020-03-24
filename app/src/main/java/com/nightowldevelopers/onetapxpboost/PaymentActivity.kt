@@ -1,4 +1,4 @@
-package com.smartappstudio.quickbooster
+package com.nightowldevelopers.onetapxpboost
 
 import android.animation.Animator
 import android.app.ProgressDialog
@@ -87,9 +87,9 @@ class PaymentActivity : FirebaseConfig(), PurchasesUpdatedListener {
                     )
                 )
                 Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                    .unlock(getString(R.string.achievement_level_19))
+                    .unlock(getString(R.string.achievement_level_8))
                 Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                    .unlock(getString(R.string.achievement_level_20))
+                    .unlock(getString(R.string.achievement_rate_achievement))
             } catch (anfe: ActivityNotFoundException) {
                 startActivity(
                     Intent(
@@ -98,9 +98,9 @@ class PaymentActivity : FirebaseConfig(), PurchasesUpdatedListener {
                     )
                 )
                 Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                    .unlock(getString(R.string.achievement_level_19))
+                    .unlock(getString(R.string.achievement_level_8))
                 Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-                    .unlock(getString(R.string.achievement_level_20))
+                    .unlock(getString(R.string.achievement_rate_achievement))
             }
         }
 
@@ -399,13 +399,9 @@ class PaymentActivity : FirebaseConfig(), PurchasesUpdatedListener {
         Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
             .unlock(getString(R.string.achievement_level_5))
         Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-            .unlock(getString(R.string.achievement_level_6))
+            .unlock(getString(R.string.achievement_level_6__follow_us_on_instagram_and_unlock_level_7))
         Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-            .unlock(getString(R.string.achievement_level_7))
-        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-            .unlock(getString(R.string.achievement_level_8))
-        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-            .unlock(getString(R.string.achievement_level_9))
+            .unlock(getString(R.string.achievement_instagram_achievement))
         Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
             .unlock(getString(R.string.achievement_level_10))
         Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
@@ -416,14 +412,7 @@ class PaymentActivity : FirebaseConfig(), PurchasesUpdatedListener {
             .unlock(getString(R.string.achievement_level_13))
         Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
             .unlock(getString(R.string.achievement_level_14))
-        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-            .unlock(getString(R.string.achievement_level_15))
-        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-            .unlock(getString(R.string.achievement_level_16))
-        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-            .unlock(getString(R.string.achievement_level_17))
-        Games.getAchievementsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
-            .unlock(getString(R.string.achievement_level_18))
+
     }
 
     override fun onBackPressed() {

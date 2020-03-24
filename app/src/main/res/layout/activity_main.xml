@@ -16,7 +16,7 @@
         android:fontFamily="@font/audiowide"
         android:gravity="center"
         android:lineSpacingExtra="10sp"
-        android:text="Quick XP \nBooster 2"
+        android:text="One Tap XP \nBooster "
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="50sp"

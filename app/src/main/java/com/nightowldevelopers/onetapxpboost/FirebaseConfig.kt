@@ -1,4 +1,4 @@
-package com.smartappstudio.quickbooster
+package com.nightowldevelopers.onetapxpboost
 
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
